@@ -1,3 +1,3 @@
 {
-    "app/src/**/*.kt": ["prettier --write", "git add"]
+    "app/src/**/*.{kt,xml}": ["prettier --write", "git add"]
 }
