@@ -1,4 +1,4 @@
-package com.example.easy_share.models
+package com.example.easyshare.models
 
 data class ProductData(
     val id: Int,

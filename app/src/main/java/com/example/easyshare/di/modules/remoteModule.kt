@@ -1,7 +1,7 @@
-package com.example.easy_share.di.modules
+package com.example.easyshare.di.modules
 
-import com.example.easy_share.di.FakeJsonConf
-import com.example.easy_share.dummy.FakeProductService
+import com.example.easyshare.di.FakeJsonConf
+import com.example.easyshare.dummy.FakeProductService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.named
