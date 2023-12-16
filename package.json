@@ -4,7 +4,11 @@
   "description": "",
   "main": "",
   "scripts": {
-
+    "ktlint:check": "run-script-os",
+    "ktlint:check:macos": "./gradlew ktlintCheck",
+    "ktlint:check:nix": "./gradlew ktlintCheck",
+    "ktlint:check:windows": "gradlew ktlintCheck",
+    "ktlint:check:default": "./gradlew ktlintCheck",
     "ktlint:format": "run-script-os",
     "ktlint:format:macos": "./gradlew ktlintFormat",
     "ktlint:format:nix": "./gradlew ktlintFormat",

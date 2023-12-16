@@ -19,5 +19,9 @@ jobs:
         cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+    - name: Grant execute permission for gradlew.bat
+      run: chmod +x gradlew.bat
+    - name: KTLint check
+      run: ./gradlew ktlintCheck
     - name: Build with Gradle
       run: ./gradlew build
