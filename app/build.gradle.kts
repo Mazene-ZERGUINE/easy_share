@@ -1,14 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
-    namespace = "com.example.easy_share"
+    namespace = "com.example.easyshare"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.easy_share"
+        applicationId = "com.example.easyshare"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -47,7 +48,6 @@ dependencies {
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
-    //rxkotlin
+    // rxkotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
-
 }

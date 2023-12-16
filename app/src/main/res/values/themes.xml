@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Easy_share" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Easyshare" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Easy_share" parent="Base.Theme.Easy_share" />
+    <style name="Theme.Easyshare" parent="Base.Theme.Easyshare" />
 </resources>
