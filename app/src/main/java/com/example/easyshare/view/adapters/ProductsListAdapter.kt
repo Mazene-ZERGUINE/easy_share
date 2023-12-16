@@ -1,4 +1,4 @@
-package com.example.easy_share.view.adapters
+package com.example.easyshare.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.easy_share.R
-import com.example.easy_share.models.ProductData
+import com.example.easyshare.R
+import com.example.easyshare.models.ProductData
 
 class ProductsListAdapter(
     val products : List<ProductData>

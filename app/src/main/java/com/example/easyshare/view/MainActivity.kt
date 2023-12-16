@@ -1,23 +1,18 @@
-package com.example.easy_share.view
-
-import androidx.appcompat.app.AppCompatActivity
+package com.example.easyshare.view;
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easy_share.R
-import com.example.easy_share.di.injectModuleDependencies
-import com.example.easy_share.di.parseAndInjectConfiguration
-import com.example.easy_share.view.adapters.ProductsListAdapter
-import com.example.easy_share.dummy.FakeProductService
-import com.example.easy_share.models.ProductData
-import com.example.easy_share.viewmodel.ProductViewModel
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.example.easyshare.R
+import com.example.easyshare.di.injectModuleDependencies
+import com.example.easyshare.di.parseAndInjectConfiguration
+import com.example.easyshare.models.ProductData
+import com.example.easyshare.view.adapters.ProductsListAdapter
+import com.example.easyshare.viewmodel.ProductViewModel
+
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,6 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         productsListRv.adapter = productsAdapter
     }
-    
-    
+
+
 }

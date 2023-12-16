@@ -1,9 +1,8 @@
-package com.example.easy_share.di
+package com.example.easyshare.di
 
 import android.content.Context
-import com.example.easy_share.di.modules.coreModule
-import com.example.easy_share.di.modules.remoteModule
-import de.hdodenhof.circleimageview.BuildConfig
+import com.example.easyshare.di.modules.coreModule
+import com.example.easyshare.di.modules.remoteModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
