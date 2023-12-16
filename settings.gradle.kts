@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "easy_share"
+rootProject.name = "easyshare"
 include(":app")

@@ -1,7 +1,6 @@
-package com.example.easy_share
-
-import androidx.appcompat.app.AppCompatActivity
+package com.example.easyshare
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
