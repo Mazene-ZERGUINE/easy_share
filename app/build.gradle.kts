@@ -46,8 +46,31 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // rxkotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
+
+    // Koin DI
+    implementation("io.insert-koin:koin-core:3.5.0")
+    implementation("io.insert-koin:koin-android:3.5.0")
+
+    // Viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.activity:activity-ktx:1.8.0")
+
+    // HTTP Client
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    // HTTP
+    implementation("com.google.code.gson:gson:2.8.9")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
