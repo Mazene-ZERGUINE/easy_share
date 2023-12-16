@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "prepare": "husky install",
+    "prettier:format": "prettier --write \"app/src/**/*.xml\"",
     "ktlint:check": "./gradlew ktlintCheck",
     "ktlint:format": "./gradlew ktlintFormat",
     "test": "echo \"Error: no test specified\" && exit 1"
