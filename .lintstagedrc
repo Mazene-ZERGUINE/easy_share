@@ -1,4 +1,4 @@
 {
-    "app/src/**/*.{xml}": ["prettier --write", "git add"],
-    "app/src/**/*.{kt,kts}": ["gradlew ktlintFormat", "git add"]
+    "app/src/**/*.xml": ["prettier --write"],
+    "app/src/**/*.{kt,kts}": ["ktlint --format"]
 }

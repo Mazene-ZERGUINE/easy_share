@@ -4,10 +4,14 @@
   "description": "",
   "main": "",
   "scripts": {
+
+    "ktlint:format": "run-script-os",
+    "ktlint:format:macos": "./gradlew ktlintFormat",
+    "ktlint:format:nix": "./gradlew ktlintFormat",
+    "ktlint:format:windows": "gradlew ktlintFormat",
+    "ktlint:format:default": "./gradlew ktlintFormat",
     "prepare": "husky install",
     "prettier:format": "prettier --write \"app/src/**/*.xml\"",
-    "ktlint:check": "./gradlew ktlintCheck",
-    "ktlint:format": "./gradlew ktlintFormat",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -17,7 +21,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
-    "prettier-plugin-kotlin": "^2.1.0"
+    "prettier-plugin-kotlin": "^2.1.0",
+    "run-script-os": "^1.1.6"
   },
   "husky": {
     "hooks": {

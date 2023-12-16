@@ -19,4 +19,3 @@ class ExampleInstrumentedTest {
         assertEquals("com.example.easyshare", appContext.packageName)
     }
 }
-
