@@ -21,7 +21,7 @@ fun injectModuleDependencies(context: Context) {
 }
 
 fun parseAndInjectConfiguration() {
-    val apiConf = FakeJsonConf(baseUrl = "http://10.188.15.14:3000/api/clm/")
+    val apiConf = FakeJsonConf(baseUrl = "http://192.168.1.58:3000/api/clm/")
     modules.add(
         module {
             single { apiConf }
