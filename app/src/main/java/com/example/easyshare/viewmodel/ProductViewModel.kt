@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
-class ProductViewModel (private val productRepository: FakeProductRepository ): ViewModel(){
+class ProductViewModel(private val productRepository: FakeProductRepository) : ViewModel() {
     private val disposBag = CompositeDisposable()
 
     private val productData: BehaviorSubject<List<ProductData>> = BehaviorSubject.createDefault(listOf())
@@ -22,8 +22,7 @@ class ProductViewModel (private val productRepository: FakeProductRepository ): 
         getCompleteProductData()
     }
 
-    private fun getProduct(){
-
+    private fun getProduct() {
         productRepository.getFakeProducts()
             .observeOn(Schedulers.io())
             .subscribe(
@@ -34,19 +33,17 @@ class ProductViewModel (private val productRepository: FakeProductRepository ): 
                     Log.d("getFakeProducts", "Error while getting products data ")
                 }
             ).addTo(disposBag)
-
     }
 
-    private fun getCompleteProductData(){
+    private fun getCompleteProductData() {
         this.getProduct()
 
         this.productData
             .delay(2, TimeUnit.SECONDS)
             .observeOn(Schedulers.io())
-            .subscribe{
+            .subscribe {
                 print(it)
                 this.completeProductData.postValue(it)
             }.addTo(disposBag)
     }
-
 }
