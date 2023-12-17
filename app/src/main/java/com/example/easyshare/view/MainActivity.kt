@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this,R.id.host_frag)
         NavigationUI.setupWithNavController(bottomNavigation, navController)
 
-        parseAndInjectConfiguration()
-        injectModuleDependencies(this)
+
 
 
     }
