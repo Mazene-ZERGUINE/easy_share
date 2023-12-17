@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
         this.productsListRv = findViewById(R.id.product_rv)
         this.loadingProgressBar = findViewById(R.id.loadingProgressBar)
 
-        parseAndInjectConfiguration()
-        injectModuleDependencies(this)
+
 
         this.loadingProgressBar.visibility = View.VISIBLE
 

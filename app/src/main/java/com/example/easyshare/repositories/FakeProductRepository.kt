@@ -1,6 +1,9 @@
 package com.example.easyshare.repositories
 
 import com.example.easyshare.dummy.FakeProductService
+
+
+import com.example.easyshare.services.ApiService
 import com.example.easyshare.models.ProductData
 import io.reactivex.rxjava3.core.Flowable
 
@@ -8,6 +11,7 @@ class FakeProductRepository(private val fakeProductData: FakeProductService) {
     private val imageUrl =
         "https://encrypted-tbn0.gstatic.com/images?" +
             "q=tbn:ANd9GcSY0jbtT-z4XUqN0R9yhdwhiA-h_pPRnSbnCFAfjnKITa1GxgXoHN_NMoEsM9jC72Omek0&usqp=CAU"
+class FakeProductRepository(private val fakeProductData: ApiService) {
 
     fun getFakeProducts(): Flowable<List<ProductData>> {
         val dummyData =
