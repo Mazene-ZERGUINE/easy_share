@@ -1,18 +1,18 @@
 package com.example.easyshare.view
 
 import LoginViewModel
+import Utils
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import com.example.easyshare.R
 import com.example.easyshare.di.injectModuleDependencies
 import com.example.easyshare.di.parseAndInjectConfiguration
+import com.example.easyshare.utilis.TokenManager
 import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,28 +31,41 @@ class LoginActivity : AppCompatActivity() {
         emailInput = findViewById(R.id.emailEt)
         passwordInput = findViewById(R.id.passET)
 
-        loginViewModel.loginResult.observe(this, Observer { loginResponse ->
+        loginViewModel.loginResult.observe(this) { loginResponse ->
+            val token: String = loginResponse.getToken()
+            TokenManager.setToken(token)
+            Utils.displayToast(
+                applicationContext,
+                R.layout.success_toast,
+                "Bonjour ^^",
+                Toast.LENGTH_SHORT
+            )
+            val mainActivityIntent = Intent(this, MainActivity::class.java)
+            startActivity(mainActivityIntent)
+        }
 
-        })
-
-        loginViewModel.loginError.observe(this, Observer { errorMessage ->
-
-        })
+        loginViewModel.loginError.observe(this) { _ ->
+            Utils.displayToast(
+                applicationContext,
+                R.layout.error_toast,
+                "Ce compte n'éxiste pas",
+                Toast.LENGTH_SHORT
+            )
+        }
 
         loginButton.setOnClickListener {
             this.login()
         }
     }
 
-    fun login() {
+    private fun login() {
         val email = emailInput.text.toString()
         val password = passwordInput.text.toString()
 
         if (email.isNotEmpty() && password.isNotEmpty()) {
-            println("login")
             loginViewModel.login(email, password)
         } else {
-            Toast.makeText(this, "merci de remplire tous les champs", Toast.LENGTH_SHORT).show()
+            Utils.displayToast(applicationContext, R.layout.error_toast, "Merci de remplire tous les champs!", Toast.LENGTH_SHORT)
         }
     }
 }
