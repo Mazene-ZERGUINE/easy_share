@@ -9,19 +9,16 @@ import org.koin.core.context.startKoin
 import org.koin.core.error.KoinAppAlreadyStartedException
 import org.koin.dsl.module
 
-
-
 fun injectModuleDependencies(context: Context) {
     try {
         startKoin {
             androidContext(context)
             modules(modules)
         }
-    }catch (alreadyStart: KoinAppAlreadyStartedException) {
+    } catch (alreadyStart: KoinAppAlreadyStartedException) {
         loadKoinModules(modules)
     }
 }
-
 
 fun parseAndInjectConfiguration() {
     val apiConf = FakeJsonConf(baseUrl = "https://fakerapi.it/api/v1/")

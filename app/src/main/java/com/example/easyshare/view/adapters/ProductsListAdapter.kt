@@ -11,40 +11,44 @@ import com.example.easyshare.R
 import com.example.easyshare.models.ProductData
 
 class ProductsListAdapter(
-    val products : List<ProductData>
-): RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val productView = LayoutInflater
-                        .from(parent.context)
-                        .inflate(R.layout.fragment_product, parent, false)
+    val products: List<ProductData>
+) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ProductViewHolder {
+        val productView =
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.fragment_product, parent, false)
 
         return ProductViewHolder(productView)
     }
 
-    override fun getItemCount() = products.count();
+    override fun getItemCount() = products.count()
 
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ProductViewHolder,
+        position: Int
+    ) {
         val currentProduct = products[position]
         holder.bind(currentProduct)
     }
 
-
-    inner class ProductViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
-
-        private var productTitleTv : TextView
-        private var publishedAtTv : TextView
+    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var productTitleTv: TextView
+        private var publishedAtTv: TextView
         private var profileNameTv: TextView
-        private var productIm : ImageView
+        private var productIm: ImageView
 
-        init{
+        init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
             publishedAtTv = itemView.findViewById(R.id.productPublishebAt)
             profileNameTv = itemView.findViewById(R.id.profileNameTv)
             productIm = itemView.findViewById(R.id.productIm)
-
         }
 
-        fun bind(productData: ProductData){
+        fun bind(productData: ProductData) {
             productTitleTv.text = productData.title
             publishedAtTv.text = productData.publishedAt
             profileNameTv.text = productData.author
@@ -53,6 +57,5 @@ class ProductsListAdapter(
                 .load(productData.imageUrl)
                 .into(productIm)
         }
-
     }
 }
