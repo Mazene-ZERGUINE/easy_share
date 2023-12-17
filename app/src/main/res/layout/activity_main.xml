@@ -9,71 +9,27 @@
 >
 
 
+    <fragment
+      android:id="@+id/host_frag"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navGraph="@navigation/nav_graph"
+      android:name="androidx.navigation.fragment.NavHostFragment"
+      />
 
-
-
-
-
-    <LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:layout_marginHorizontal="10dp"
-	>
-
-        <ProgressBar
-          android:id="@+id/loadingProgressBar"
-          android:layout_width="100dp"
-          android:layout_height="match_parent"
-          android:layout_gravity="center"
-          android:visibility="gone"/>
-
-        <TextView
-			android:id="@+id/textView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Liste des Publications"
-			android:textSize="50sp"
-			android:textStyle="bold"
-            android:layout_marginBottom="30dp"
-		/>
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/product_rv"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          tools:listitem="@layout/fragment_product"
-          tools:itemCount="3"
-          />
-
-
-    </LinearLayout>
-
-
-
-
-    <FrameLayout
-		android:id="@+id/frame_layout"
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-	>
-
-    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-		android:id="@+id/bottom_navigation_view"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:menu="@menu/bottom_nav"
-		android:background="@color/white"
-	/>
+      android:id="@+id/bottom_navigation_view"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:menu="@menu/bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

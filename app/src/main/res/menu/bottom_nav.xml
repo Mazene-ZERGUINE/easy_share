@@ -3,7 +3,7 @@
 
 
     <item
-		android:id="@+id/home"
+		android:id="@+id/homeFragment"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:title="Home"
@@ -28,7 +28,7 @@
 	/>
 
     <item
-		android:id="@+id/favorites"
+		android:id="@+id/favoriteFragment"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:title="Favorite"
@@ -36,7 +36,7 @@
 	/>
 
     <item
-		android:id="@+id/profile"
+		android:id="@+id/accountFragment"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:title="Profile"

@@ -3,6 +3,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
@@ -11,6 +13,7 @@ import com.example.easyshare.di.parseAndInjectConfiguration
 import com.example.easyshare.models.ProductData
 import com.example.easyshare.view.adapters.ProductsListAdapter
 import com.example.easyshare.viewmodel.ProductViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -22,18 +25,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.productsListRv = findViewById(R.id.product_rv)
-        this.loadingProgressBar = findViewById(R.id.loadingProgressBar)
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val navController = Navigation.findNavController(this,R.id.host_frag)
+        NavigationUI.setupWithNavController(bottomNavigation, navController)
 
         parseAndInjectConfiguration()
         injectModuleDependencies(this)
 
-        this.loadingProgressBar.visibility = View.VISIBLE
 
-        this.productViewModel.completeProductData.observe(this@MainActivity) {
-            this.loadingProgressBar.visibility = View.GONE
-            this.setUpProductsList(it)
-        }
     }
 
     private fun setUpProductsList(products: List<ProductData>) {
@@ -43,4 +42,5 @@ class MainActivity : AppCompatActivity() {
 
         productsListRv.adapter = productsAdapter
     }
+
 }
