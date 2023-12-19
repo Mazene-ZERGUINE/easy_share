@@ -1,12 +1,17 @@
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import android.widget.TextView
+import android.widget.Toast
 import com.example.easyshare.R
 
 object Utils {
-    fun displayToast(context: Context, layoutResId: Int, message: String, duration: Int) {
+    fun displayToast(
+        context: Context,
+        layoutResId: Int,
+        message: String,
+        duration: Int
+    ) {
         val inflater: LayoutInflater = LayoutInflater.from(context)
         val layout: View = inflater.inflate(layoutResId, null)
         val messageTextView: TextView = layout.findViewById(R.id.messageTextView)

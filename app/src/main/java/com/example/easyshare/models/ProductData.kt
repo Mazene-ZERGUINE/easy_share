@@ -1,7 +1,7 @@
 package com.example.easyshare.models
 
 data class ProductData(
-    val id: Int,
+    val idProduct: Int,
     val title: String,
     val author: String,
     val description: String,

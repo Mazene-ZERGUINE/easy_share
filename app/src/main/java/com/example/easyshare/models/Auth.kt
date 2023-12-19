@@ -4,6 +4,6 @@ data class LoginRequest(private val email: String, private val mot_de_passe: Str
 
 data class LoginResponse(private val access_token: String) {
     fun getToken(): String {
-        return access_token;
+        return access_token
     }
 }
