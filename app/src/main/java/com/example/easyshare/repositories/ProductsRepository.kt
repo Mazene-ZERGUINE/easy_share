@@ -5,7 +5,7 @@ import com.example.easyshare.services.ApiService
 import io.reactivex.rxjava3.core.Single
 
 class ProductsRepository(private val fakeProductData: ApiService) {
-    fun getFakeProducts(): Single<AllProductInfo> {
+    fun getProducts(): Single<AllProductInfo> {
         return fakeProductData.getProducts()
     }
 }

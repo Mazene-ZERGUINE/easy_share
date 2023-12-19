@@ -15,6 +15,8 @@ class ProductViewModel(private val productRepository: ProductsRepository) : View
 
     private val productData: BehaviorSubject<List<Data>> = BehaviorSubject.createDefault(listOf())
 
+    val isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
+
     val completeProductData: MutableLiveData<List<Data>> = MutableLiveData()
 
     init {
@@ -22,8 +24,9 @@ class ProductViewModel(private val productRepository: ProductsRepository) : View
     }
 
     private fun getProduct() {
-        productRepository.getFakeProducts()
+        productRepository.getProducts()
             .observeOn(Schedulers.io())
+            .doOnTerminate { this.isLoading.postValue(false) }
             .subscribe(
                 {
                     this.productData.onNext(it.data)

@@ -10,7 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
-    @GET("products")
+    @GET("publications")
     fun getProducts(): Single<AllProductInfo>
 
     @POST("auth/log-in")

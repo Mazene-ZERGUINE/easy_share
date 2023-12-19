@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
                 "Bonjour ^^",
                 Toast.LENGTH_SHORT
             )
+            TokenManager.storeAccessToken(this, loginResponse.getToken())
             val mainActivityIntent = Intent(this, MainActivity::class.java)
             startActivity(mainActivityIntent)
         }
@@ -51,8 +52,6 @@ class LoginActivity : AppCompatActivity() {
                 "Ce compte n'éxiste pas",
                 Toast.LENGTH_SHORT
             )
-            val mainActivityIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainActivityIntent)
         }
 
         loginButton.setOnClickListener {
