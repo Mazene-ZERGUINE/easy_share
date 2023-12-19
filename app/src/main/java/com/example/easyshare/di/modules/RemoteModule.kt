@@ -11,19 +11,20 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-const val apiService = "apiService"
+const val API_SERVICE = "apiService"
 
-internal val remoteModule = module {
-    single(named(apiService)) { createRetrofitClient(get(), get<FakeJsonConf>().baseUrl) }
+internal val remoteModule =
+    module {
+        single(named(API_SERVICE)) { createRetrofitClient(get(), get<FakeJsonConf>().baseUrl) }
 
-    single { createOkHttpClient() }
+        single { createOkHttpClient() }
 
-    single {
-        createWebService<ApiService>(
-            get(named(apiService))
-        )
+        single {
+            createWebService<ApiService>(
+                get(named(API_SERVICE))
+            )
+        }
     }
-}
 
 inline fun <reified T> createWebService(retrofit: Retrofit): T {
     return retrofit.create(T::class.java)
@@ -36,8 +37,10 @@ fun createOkHttpClient(): OkHttpClient {
         .build()
 }
 
-
-fun createRetrofitClient(okhttpClient: OkHttpClient, baseUrl: String): Retrofit {
+fun createRetrofitClient(
+    okhttpClient: OkHttpClient,
+    baseUrl: String
+): Retrofit {
     val gsonConverter =
         GsonConverterFactory.create(
             GsonBuilder().create()
