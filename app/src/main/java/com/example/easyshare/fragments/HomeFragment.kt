@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.databinding.FragmentHomeBinding
 import com.example.easyshare.di.injectModuleDependencies
 import com.example.easyshare.di.parseAndInjectConfiguration
-import com.example.easyshare.models.ProductData
+import com.example.easyshare.models.Data
 import com.example.easyshare.view.adapters.ProductsListAdapter
 import com.example.easyshare.viewmodel.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setUpProductsList(products: List<ProductData>) {
+    private fun setUpProductsList(products: List<Data>) {
         val productsAdapter = ProductsListAdapter(products)
         productsListRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         productsListRv.adapter = productsAdapter

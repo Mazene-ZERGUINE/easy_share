@@ -3,20 +3,19 @@ package com.example.easyshare.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.easyshare.models.ProductData
-import com.example.easyshare.repositories.FakeProductRepository
+import com.example.easyshare.models.Data
+import com.example.easyshare.repositories.ProductsRepository
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import java.util.concurrent.TimeUnit
 
-class ProductViewModel(private val productRepository: FakeProductRepository) : ViewModel() {
+class ProductViewModel(private val productRepository: ProductsRepository) : ViewModel() {
     private val disposBag = CompositeDisposable()
 
-    private val productData: BehaviorSubject<List<ProductData>> = BehaviorSubject.createDefault(listOf())
+    private val productData: BehaviorSubject<List<Data>> = BehaviorSubject.createDefault(listOf())
 
-    val completeProductData: MutableLiveData<List<ProductData>> = MutableLiveData()
+    val completeProductData: MutableLiveData<List<Data>> = MutableLiveData()
 
     init {
         getCompleteProductData()
@@ -27,10 +26,10 @@ class ProductViewModel(private val productRepository: FakeProductRepository) : V
             .observeOn(Schedulers.io())
             .subscribe(
                 {
-                    this.productData.onNext(it)
+                    this.productData.onNext(it.data)
                 },
-                {
-                    Log.d("getFakeProducts", "Error while getting products data ")
+                { e ->
+                    Log.e("getProducts", "Error while getting products data", e)
                 }
             ).addTo(disposBag)
     }
@@ -39,10 +38,9 @@ class ProductViewModel(private val productRepository: FakeProductRepository) : V
         this.getProduct()
 
         this.productData
-            .delay(2, TimeUnit.SECONDS)
             .observeOn(Schedulers.io())
             .subscribe {
-                print(it)
+                Log.d("getProduct", it.toString())
                 this.completeProductData.postValue(it)
             }.addTo(disposBag)
     }

@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.easyshare.R
-import com.example.easyshare.models.ProductData
+import com.example.easyshare.models.Data
 import com.example.easyshare.view.ProductDetailsActivity
 
 class ProductsListAdapter(
-    val products: List<ProductData>
+    val products: List<Data>
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
     companion object {
         const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
@@ -63,23 +62,19 @@ class ProductsListAdapter(
                     val context = itemView.context
                     val intent =
                         Intent(context, ProductDetailsActivity::class.java).apply {
-                            putExtra(PRODUCT_ID, product.idProduct.toString())
-                            putExtra(PRODUCT_NAME, product.title)
-                            putExtra(PRODUCT_IMAGE, product.imageUrl)
+                            putExtra(PRODUCT_ID, product.publicationId.toString())
+                            putExtra(PRODUCT_NAME, product.titre)
+                            putExtra(PRODUCT_IMAGE, product.images[0])
                         }
                     context.startActivity(intent)
                 }
             }
         }
 
-        fun bind(productData: ProductData) {
-            productTitleTv.text = productData.title
-            publishedAtTv.text = productData.publishedAt
-            profileNameTv.text = productData.author
-
-            Glide.with(itemView.context)
-                .load(productData.imageUrl)
-                .into(productIm)
+        fun bind(productData: Data) {
+            productTitleTv.text = productData.titre
+            publishedAtTv.text = productData.createdAt
+            profileNameTv.text = productData.utilisateur.pseudonyme
         }
     }
 }
