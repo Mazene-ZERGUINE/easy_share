@@ -1,19 +1,19 @@
 package com.example.easyshare.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
-import com.example.easyshare.view.adapters.CommentsAdapter
-import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
+import com.example.easyshare.viewmodel.CommentViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductDetailsActivity : AppCompatActivity() {
+    private val commentViewModel: CommentViewModel by viewModel()
+
     private lateinit var binding: ActivityProductDetailsBinding
 
-    private lateinit var productId: String
     private lateinit var productTitle: String
-
-    private lateinit var commentsAdapter: CommentsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,18 +22,20 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         getProductInfoFromIntent()
         setProductInfoInView()
-        setUpComments()
+        observeProductComments()
     }
 
-    private fun setUpComments() {
+    private fun getProductInfoFromIntent() {
+        productTitle = intent.getStringExtra(PRODUCT_NAME) ?: ""
     }
 
     private fun setProductInfoInView() {
         binding.productDetailTitleTv.text = this.productTitle
     }
 
-    private fun getProductInfoFromIntent() {
-        productId = intent.getStringExtra(PRODUCT_ID) ?: ""
-        productTitle = intent.getStringExtra(PRODUCT_NAME) ?: ""
+    private fun observeProductComments() {
+        this.commentViewModel.completeComments.observe(this) { comments ->
+            Log.d("commentsDetails", comments.toString())
+        }
     }
 }
