@@ -121,9 +121,11 @@
                       />
 
                     <TextView
+                      android:id="@+id/comments_size_tv"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="256"
+
                       />
                 </LinearLayout>
 
@@ -146,6 +148,7 @@
                       />
 
                     <TextView
+                      android:id="@+id/likes_size_iv"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="150"

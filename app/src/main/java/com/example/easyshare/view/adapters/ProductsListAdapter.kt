@@ -48,12 +48,14 @@ class ProductsListAdapter(
         private var publishedAtTv: TextView
         private var profileNameTv: TextView
         private var productIm: ImageView
+        private var productCommentsSize: TextView
 
         init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
             publishedAtTv = itemView.findViewById(R.id.productPublishedAt)
             profileNameTv = itemView.findViewById(R.id.profileNameTv)
             productIm = itemView.findViewById(R.id.productIm)
+            productCommentsSize = itemView.findViewById(R.id.comments_size_tv)
 
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
@@ -64,7 +66,6 @@ class ProductsListAdapter(
                         Intent(context, ProductDetailsActivity::class.java).apply {
                             putExtra(PRODUCT_ID, product.publicationId.toString())
                             putExtra(PRODUCT_NAME, product.titre)
-                            putExtra(PRODUCT_IMAGE, product.images[0])
                         }
                     context.startActivity(intent)
                 }
@@ -75,6 +76,7 @@ class ProductsListAdapter(
             productTitleTv.text = productData.titre
             publishedAtTv.text = productData.createdAt
             profileNameTv.text = productData.utilisateur.pseudonyme
+            productCommentsSize.text = productData.comments[0].comment
         }
     }
 }
