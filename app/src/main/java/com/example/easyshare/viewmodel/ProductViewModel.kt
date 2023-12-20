@@ -30,6 +30,7 @@ class ProductViewModel(private val productRepository: ProductsRepository) : View
             .subscribe(
                 {
                     this.productData.onNext(it.data)
+                    Log.d("commentsSize", it.data[0].comments.count().toString())
                 },
                 { e ->
                     Log.e("getProducts", "Error while getting products data", e)
