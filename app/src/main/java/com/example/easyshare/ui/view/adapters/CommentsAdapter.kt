@@ -24,10 +24,14 @@ class CommentsAdapter(private val comments: List<Commentaire>) : RecyclerView.Ad
         holder.bind(comments[position])
     }
 
-    override fun getItemCount() = comments.size
+    override fun getItemCount() = comments.count()
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var commentTv: TextView = itemView.findViewById(R.id.comment_tv)
+        private var commentTv: TextView
+
+        init {
+            this.commentTv = itemView.findViewById(R.id.comment_tv)
+        }
 
         fun bind(commentaire: Commentaire) {
             commentTv.text = commentaire.comment

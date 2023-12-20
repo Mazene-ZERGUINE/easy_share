@@ -1,7 +1,6 @@
 package com.example.easyshare.ui.view.adapters
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,8 +74,6 @@ class ProductsListAdapter(
                         Intent(context, ProductDetailsActivity::class.java).apply {
                             putExtra(PRODUCT_ID, product.publicationId.toString())
                             putExtra(PRODUCT_NAME, product.titre)
-                            putExtra(PRODUCT_COMMENTS, product.comments[adapterPosition].comment)
-                            Log.d("getComments", product.comments[adapterPosition].comment)
                         }
                     context.startActivity(intent)
                 }

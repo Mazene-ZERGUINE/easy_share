@@ -1,5 +1,6 @@
 package com.example.easyshare.services
 
+import com.example.easyshare.models.AllComments
 import com.example.easyshare.models.AllProductInfo
 import com.example.easyshare.models.ApiResponse
 import com.example.easyshare.models.GenericApiResponse
@@ -22,7 +23,7 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("publications")
-    fun getProducts(): Single<AllProductInfo>
+    fun getProducts(): Flowable<AllProductInfo>
 
     @POST("auth/log-in")
     fun userLogin(

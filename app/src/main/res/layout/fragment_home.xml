@@ -34,7 +34,11 @@
 			android:id="@+id/products_rv"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+<<<<<<< HEAD
 			tools:listitem="@layout/fragment_product"
+=======
+			tools:listitem="@layout/fragment_comment"
+>>>>>>> 5e60412 ([comments]: adding comments model view)
 			tools:itemCount="3"
 		/>
     </LinearLayout>

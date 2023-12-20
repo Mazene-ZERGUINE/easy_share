@@ -199,7 +199,14 @@
 
 
 
-
+        <androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/comments_rv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
+				tools:listitem="@layout/fragment_comment"
+				tools:itemCount="3"
+			/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
