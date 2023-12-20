@@ -18,7 +18,7 @@ class ProductsListAdapter(
     companion object {
         const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
         const val PRODUCT_NAME = "com.example.easyshare.fragments.title"
-        const val PRODUCT_IMAGE = "com.example.easyshare.fragments.imageUrl"
+        const val PRODUCT_COMMENTS = "com.example.easyshare.fragments.COMMENTS"
     }
 
     override fun onCreateViewHolder(
@@ -60,12 +60,14 @@ class ProductsListAdapter(
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     val product = products[adapterPosition]
-                    Log.d("getFakeProducts", product.toString())
+
                     val context = itemView.context
                     val intent =
                         Intent(context, ProductDetailsActivity::class.java).apply {
                             putExtra(PRODUCT_ID, product.publicationId.toString())
                             putExtra(PRODUCT_NAME, product.titre)
+                            putExtra(PRODUCT_COMMENTS, product.comments[adapterPosition].comment)
+                            Log.d("getComments", product.comments[adapterPosition].comment)
                         }
                     context.startActivity(intent)
                 }
@@ -76,7 +78,7 @@ class ProductsListAdapter(
             productTitleTv.text = productData.titre
             publishedAtTv.text = productData.createdAt
             profileNameTv.text = productData.utilisateur.pseudonyme
-            productCommentsSize.text = productData.comments[0].comment
+            productCommentsSize.text = productData.publicationId.toString()
         }
     }
 }
