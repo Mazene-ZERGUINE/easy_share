@@ -54,6 +54,8 @@ class LoginActivity : AppCompatActivity() {
                 "Ce compte n'éxiste pas",
                 Toast.LENGTH_SHORT
             )
+            val mainActivityIntent = Intent(this, MainActivity::class.java)
+            startActivity(mainActivityIntent)
         }
     }
 

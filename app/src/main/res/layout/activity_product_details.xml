@@ -197,13 +197,20 @@
 
             </LinearLayout>
 
-
+            <Button
+				android:id="@+id/toggleLimitButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="LoadMore"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
+			/>
 
         <androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/comments_rv"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
+				app:layout_constraintTop_toBottomOf="@+id/toggleLimitButton"
 				tools:listitem="@layout/fragment_comment"
 				tools:itemCount="3"
 			/>

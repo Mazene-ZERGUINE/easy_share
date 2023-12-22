@@ -1,10 +1,13 @@
 package com.example.easyshare.services
 
-import com.example.easyshare.models.AllComments
 import com.example.easyshare.models.AllProductInfo
+<<<<<<< HEAD
 import com.example.easyshare.models.ApiResponse
 import com.example.easyshare.models.GenericApiResponse
 import com.example.easyshare.models.IsStarredPost
+=======
+import com.example.easyshare.models.CommentResponse
+>>>>>>> bbc6b76 ([design]: implement comment fragment xml)
 import com.example.easyshare.models.LoginRequest
 import com.example.easyshare.models.LoginResponse
 import com.example.easyshare.models.PublicationFavori
