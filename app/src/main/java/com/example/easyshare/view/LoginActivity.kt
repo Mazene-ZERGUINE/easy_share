@@ -5,6 +5,7 @@ import Utils
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.easyshare.R
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var emailInput: TextInputEditText
     private lateinit var passwordInput: TextInputEditText
+    private lateinit var signupTv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,43 @@ class LoginActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.button)
         emailInput = findViewById(R.id.emailEt)
         passwordInput = findViewById(R.id.passET)
+        signupTv = findViewById(R.id.textView)
 
+        observeLoginError()
+        observeLoginSuccess()
+
+        loginButton.setOnClickListener {
+            this.login()
+        }
+
+        signupTv.setOnClickListener {
+            redirectToSignupScreen()
+        }
+    }
+
+    private fun observeLoginSuccess() {
+        loginViewModel.loginError.observe(this) { _ ->
+            Utils.displayToast(
+                applicationContext,
+                R.layout.error_toast,
+                "Ce compte n'éxiste pas",
+                Toast.LENGTH_SHORT
+            )
+        }
+    }
+
+    private fun login() {
+        val email = emailInput.text.toString()
+        val password = passwordInput.text.toString()
+
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            loginViewModel.login(email, password)
+        } else {
+            Utils.displayToast(applicationContext, R.layout.error_toast, "Merci de remplire tous les champs!", Toast.LENGTH_SHORT)
+        }
+    }
+
+    private fun observeLoginError() {
         loginViewModel.loginResult.observe(this) { loginResponse ->
             val token: String = loginResponse.getToken()
             TokenManager.setToken(token)
@@ -44,29 +82,10 @@ class LoginActivity : AppCompatActivity() {
             val mainActivityIntent = Intent(this, MainActivity::class.java)
             startActivity(mainActivityIntent)
         }
-
-        loginViewModel.loginError.observe(this) { _ ->
-            Utils.displayToast(
-                applicationContext,
-                R.layout.error_toast,
-                "Ce compte n'éxiste pas",
-                Toast.LENGTH_SHORT
-            )
-        }
-
-        loginButton.setOnClickListener {
-            this.login()
-        }
     }
 
-    private fun login() {
-        val email = emailInput.text.toString()
-        val password = passwordInput.text.toString()
-
-        if (email.isNotEmpty() && password.isNotEmpty()) {
-            loginViewModel.login(email, password)
-        } else {
-            Utils.displayToast(applicationContext, R.layout.error_toast, "Merci de remplire tous les champs!", Toast.LENGTH_SHORT)
-        }
+    private fun redirectToSignupScreen() {
+        val signupIntent = Intent(this, SignupActivity::class.java)
+        startActivity(signupIntent)
     }
 }

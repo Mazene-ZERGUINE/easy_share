@@ -4,6 +4,8 @@ import LoginViewModel
 import com.example.easyshare.repositories.AuthRepository
 import com.example.easyshare.repositories.ProductsRepository
 import com.example.easyshare.viewmodel.ProductViewModel
+import com.example.easyshare.viewmodel.SignupViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 internal val coreModule =
@@ -12,7 +14,9 @@ internal val coreModule =
 
         single { ProductsRepository(get()) }
 
-        single { LoginViewModel(get()) }
+        viewModel { LoginViewModel(get()) }
 
         single { AuthRepository(get()) }
+
+        viewModel { SignupViewModel(get()) }
     }

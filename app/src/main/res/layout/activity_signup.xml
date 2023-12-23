@@ -13,23 +13,21 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="68dp"
-      android:text="Connectez vous à votre compte"
+      android:text="Créer votre compte"
       android:textAlignment="center"
       android:textColor="@color/white"
       android:textSize="30dp"
       app:layout_constraintBottom_toTopOf="@+id/emailLayout"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintHorizontal_bias="0.496"
       app:layout_constraintStart_toStartOf="parent" />
-
-
 
     <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/emailLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
-      android:layout_marginTop="232dp"
+      android:layout_marginTop="204dp"
       android:background="@drawable/bottom_border_background"
       app:boxBackgroundMode="none"
       app:boxStrokeWidth="0dp"
@@ -90,32 +88,65 @@
       android:layout_marginRight="20dp"
       app:layout_constraintBottom_toBottomOf="@+id/passwordLayout" />
 
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/passwordConfirmLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="16dp"
+      app:boxBackgroundMode="none"
+      android:background="@drawable/bottom_border_background"
+      android:layout_marginTop="24dp"
+      app:boxStrokeColor="@android:color/white"
+      app:hintTextColor="@android:color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+      >
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/passCET"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="Nom d'utilisateur"
+          android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="3dp"
+      android:layout_below="@id/emailLayout"
+      android:background="@android:color/white"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      app:layout_constraintBottom_toBottomOf="@+id/passwordConfirmLayout" />
+
     <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/button"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
       android:background="@drawable/connexion_btn"
-    android:text="Connexion"
-    android:textColor="@android:color/white"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
-    app:layout_constraintVertical_bias="0.23" />
+      android:text="créer"
+      android:textColor="@android:color/white"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
+      app:layout_constraintVertical_bias="0.372" />
 
     <TextView
-      android:id="@+id/textView"
+      android:id="@+id/loginTv"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Pas de compte ? Créer votre compte ici."
+      android:text="déja un compte? connectez-vous ici"
       android:textColor="@android:color/white"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/button"
-      app:layout_constraintVertical_bias="0.106" />
+      app:layout_constraintVertical_bias="0.281" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
