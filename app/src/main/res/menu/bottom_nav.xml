@@ -46,6 +46,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:title="@string/logout"
-		android:icon="@drawable/logout_btn"
+		android:icon="@mipmap/ic_log_out_foreground"
 	/>
 </menu>
