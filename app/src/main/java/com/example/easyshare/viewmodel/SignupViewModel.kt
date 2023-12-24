@@ -11,7 +11,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SignupViewModel(private val authRepository: AuthRepository) : ViewModel() {
-
     private val disposeBag = CompositeDisposable()
     val signupResult = MutableLiveData<SignupResponse>()
     val signupErr = MutableLiveData<Throwable>()
