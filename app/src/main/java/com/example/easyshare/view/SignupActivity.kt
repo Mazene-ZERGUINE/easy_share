@@ -2,11 +2,11 @@ package com.example.easyshare.view
 
 import Utils
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.easyshare.R
 import com.example.easyshare.viewmodel.SignupViewModel
 import com.google.android.material.textfield.TextInputEditText
@@ -14,7 +14,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.HttpException
 
 class SignupActivity : AppCompatActivity() {
-
     private val signupViewModel: SignupViewModel by viewModel()
 
     private lateinit var passwordInput: TextInputEditText
@@ -22,7 +21,6 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var usernameInput: TextInputEditText
     private lateinit var signupButton: Button
     private lateinit var loginTv: TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +58,6 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun observeSignupFailure() {
-
         signupViewModel.signupErr.observe(this@SignupActivity) {
             if (it is HttpException) {
                 val errCode = it.code()
