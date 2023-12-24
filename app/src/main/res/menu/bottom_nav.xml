@@ -10,14 +10,20 @@
 		android:icon="@drawable/ic_home"
 	/>
 
+<!--    <item-->
+<!--		android:id="@+id/search"-->
+<!--		android:layout_width="wrap_content"-->
+<!--		android:layout_height="wrap_content"-->
+<!--		android:icon="@drawable/ic_search"-->
+<!--		android:title="Search"-->
+<!--	/>-->
     <item
-		android:id="@+id/search"
+		android:id="@+id/favoriteFragment"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:icon="@drawable/ic_search"
-		android:title="Search"
+		android:title="Favorite"
+		android:icon="@drawable/ic_favorite"
 	/>
-
 
     <item
 		android:id="@+id/add"
@@ -28,18 +34,18 @@
 	/>
 
     <item
-		android:id="@+id/favoriteFragment"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:title="Favorite"
-		android:icon="@drawable/ic_favorite"
-	/>
-
-    <item
 		android:id="@+id/accountFragment"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:title="Profile"
 		android:icon="@drawable/ic_user_profile"
+	/>
+
+    <item
+		android:id="@+id/logout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:title="@string/logout"
+		android:icon="@drawable/logout_btn"
 	/>
 </menu>
