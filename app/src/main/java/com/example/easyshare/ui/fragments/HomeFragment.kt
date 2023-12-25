@@ -57,8 +57,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpProductsList(products: List<Data>) {
-        val productsAdapter = ProductsListAdapter(products)
         productsListRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        productsListRv.adapter = productsAdapter
+        productsListRv.adapter =
+            ProductsListAdapter(products) { postId ->
+                this.productViewModel.starPost(postId)
+            }
     }
 }

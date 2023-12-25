@@ -25,6 +25,11 @@ interface ApiService {
     ): Flowable<LoginResponse>
 
     // #region favori
+    @POST("favoris/publications/{id}")
+    fun starPost(
+        @Path("id") id: Int
+    ): Flowable<Unit>
+
     @DELETE("favoris/publications/{id}")
     fun unstarPost(
         @Path("id") id: Int

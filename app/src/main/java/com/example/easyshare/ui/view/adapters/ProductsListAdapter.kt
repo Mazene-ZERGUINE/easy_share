@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
 import com.example.easyshare.models.Data
 import com.example.easyshare.ui.view.ProductDetailsActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListAdapter(
-    val products: List<Data>
+    val products: List<Data>,
+    private val onStar: (Int) -> Unit
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
     companion object {
         const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
@@ -49,6 +51,7 @@ class ProductsListAdapter(
         private var profileNameTv: TextView
         private var productIm: ImageView
         private var productCommentsSize: TextView
+        private var starButton: FloatingActionButton
 
         init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
@@ -56,6 +59,7 @@ class ProductsListAdapter(
             profileNameTv = itemView.findViewById(R.id.profileNameTv)
             productIm = itemView.findViewById(R.id.productIm)
             productCommentsSize = itemView.findViewById(R.id.comments_size_tv)
+            starButton = itemView.findViewById(R.id.favoriteFab)
 
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
@@ -70,6 +74,8 @@ class ProductsListAdapter(
                     context.startActivity(intent)
                 }
             }
+
+            this.listenToStarButton()
         }
 
         fun bind(productData: Data) {
@@ -77,6 +83,14 @@ class ProductsListAdapter(
             publishedAtTv.text = productData.createdAt
             profileNameTv.text = productData.utilisateur.pseudonyme
             productCommentsSize.text = productData.comments[0].comment
+        }
+
+        private fun listenToStarButton() {
+            starButton.setOnClickListener {
+                val postId = products[adapterPosition].publicationId
+
+                onStar(postId)
+            }
         }
     }
 }
