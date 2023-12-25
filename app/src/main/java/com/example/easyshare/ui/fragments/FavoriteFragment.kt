@@ -59,7 +59,10 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setUpFavoritePosts(favoritePosts: ApiResponse<PublicationFavori>) {
-        this.favoritePostRecyclerView.adapter = FavoritePostsAdapter(favoritePosts)
         this.favoritePostRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        this.favoritePostRecyclerView.adapter =
+            FavoritePostsAdapter(favoritePosts) { postId ->
+                this.favoriteViewModel.unstarPost(postId)
+            }
     }
 }

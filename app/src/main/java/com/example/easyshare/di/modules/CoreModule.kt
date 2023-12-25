@@ -12,7 +12,7 @@ import org.koin.dsl.module
 
 internal val coreModule =
     module {
-        single { ProductViewModel(get()) }
+        single { ProductViewModel(get(), get()) }
 
         single { ProductsRepository(get()) }
 
