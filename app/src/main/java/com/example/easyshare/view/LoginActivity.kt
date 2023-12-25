@@ -72,6 +72,8 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this) { loginResponse ->
             val token: String = loginResponse.getToken()
             TokenManager.setToken(token)
+            TokenManager.setPseudonymeFromToken()
+
             Utils.displayToast(
                 applicationContext,
                 R.layout.success_toast,

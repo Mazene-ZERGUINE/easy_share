@@ -5,9 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.easyshare.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.easyshare.databinding.FragmentFavoriteBinding
+import com.example.easyshare.models.ApiResponse
+import com.example.easyshare.models.PublicationFavori
+import com.example.easyshare.view.adapters.FavoritePostsAdapter
+import com.example.easyshare.viewmodel.FavoritePostViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment() {
+    private val favoriteViewModel: FavoritePostViewModel by viewModel()
+
+    private lateinit var binding: FragmentFavoriteBinding
+    private lateinit var favoritePostRecyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,7 +29,37 @@ class FavoriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+
+        this.favoritePostRecyclerView = binding.favoritePostsRecyclerView
+
+        this.observeIsLoading()
+        this.observeFavoritePosts()
+    }
+
+    private fun observeIsLoading() {
+        this.favoriteViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
+            binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun observeFavoritePosts() {
+        this.favoriteViewModel.favoritePosts.observe(viewLifecycleOwner) {
+            this.setUpFavoritePosts(it)
+        }
+    }
+
+    private fun setUpFavoritePosts(favoritePosts: ApiResponse<PublicationFavori>) {
+        this.favoritePostRecyclerView.adapter = FavoritePostsAdapter(favoritePosts)
+        this.favoritePostRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 }

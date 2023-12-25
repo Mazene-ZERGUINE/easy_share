@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.easyshare.models.LoginRequest
 import com.example.easyshare.models.LoginResponse
 import com.example.easyshare.repositories.AuthRepository
+import com.example.easyshare.utilis.TokenManager
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -26,7 +27,10 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
         authRepository.login(payload)
             .subscribeOn(Schedulers.io())
             .subscribe(
-                { response -> _loginResult.postValue(response) },
+                { response ->
+                    _loginResult.postValue(response)
+                    TokenManager.setPseudonymeFromToken()
+                },
                 { error -> _loginError.postValue(error.message) }
             ).addTo(disposBag)
     }
