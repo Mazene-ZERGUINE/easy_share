@@ -1,4 +1,4 @@
-package com.example.easyshare.fragments
+package com.example.easyshare.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import com.example.easyshare.databinding.FragmentHomeBinding
 import com.example.easyshare.di.injectModuleDependencies
 import com.example.easyshare.di.parseAndInjectConfiguration
 import com.example.easyshare.models.Data
-import com.example.easyshare.view.adapters.ProductsListAdapter
-import com.example.easyshare.viewmodel.ProductViewModel
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter
+import com.example.easyshare.ui.viewmodel.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {

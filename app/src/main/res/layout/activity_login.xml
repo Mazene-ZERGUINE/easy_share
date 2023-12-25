@@ -1,121 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/bgcolor"
-  tools:context=".view.LoginActivity">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/login_bg"
+	tools:context=".ui.view.LoginActivity"
+>
 
 
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="68dp"
-      android:text="Connectez vous à votre compte"
-      android:textAlignment="center"
-      android:textColor="@color/white"
-      android:textSize="30dp"
-      app:layout_constraintBottom_toTopOf="@+id/emailLayout"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="parent" />
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="68dp"
+		android:text="Connectez vous à votre compte"
+		android:textAlignment="center"
+		android:textColor="@color/white"
+		android:textSize="30dp"
+		app:layout_constraintBottom_toTopOf="@+id/emailLayout"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+	/>
 
 
 
     <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/emailLayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="16dp"
-      android:layout_marginTop="232dp"
-      android:background="@drawable/bottom_border_background"
-      app:boxBackgroundMode="none"
-      app:boxStrokeWidth="0dp"
-      app:hintTextColor="@android:color/white"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
+		android:id="@+id/emailLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="16dp"
+		android:layout_marginTop="232dp"
+		app:boxBackgroundMode="none"
+		app:hintTextColor="@color/white"
+		app:boxStrokeWidth="0dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+	>
 
         <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/emailEt"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="Adress email"
-          android:inputType="textEmailAddress"
-          android:textColorHint="@color/white" />
+			android:id="@+id/emailEt"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="Adress email"
+			android:textColorHint="@color/white"
+			android:inputType="textEmailAddress"
+		/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
-      android:layout_width="match_parent"
-      android:layout_height="3dp"
-      android:layout_below="@id/emailLayout"
-      android:background="@android:color/white"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      app:layout_constraintBottom_toBottomOf="@+id/emailLayout" />
+		android:layout_width="match_parent"
+		android:layout_height="3dp"
+		android:layout_below="@id/emailLayout"
+		android:background="@android:color/white"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		app:layout_constraintBottom_toBottomOf="@+id/emailLayout"
+	/>
 
     <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/passwordLayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="16dp"
-      app:boxBackgroundMode="none"
-      android:background="@drawable/bottom_border_background"
-      android:layout_marginTop="24dp"
-      app:boxStrokeColor="@android:color/white"
-      app:hintTextColor="@android:color/white"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/emailLayout"
-      app:passwordToggleEnabled="true">
+		android:id="@+id/passwordLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="16dp"
+		app:boxBackgroundMode="none"
+		android:background="@drawable/bottom_border_background"
+		android:layout_marginTop="24dp"
+		app:boxStrokeColor="@android:color/white"
+		app:hintTextColor="@android:color/white"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/emailLayout"
+		app:passwordToggleEnabled="true"
+	>
 
         <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/passET"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="Mot de pass"
-          android:inputType="textPassword" />
+			android:id="@+id/passET"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="Mot de pass"
+			android:inputType="textPassword"
+		/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
-      android:layout_width="match_parent"
-      android:layout_height="3dp"
-      android:layout_below="@id/emailLayout"
-      android:background="@android:color/white"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      app:layout_constraintBottom_toBottomOf="@+id/passwordLayout" />
+		android:layout_width="match_parent"
+		android:layout_height="3dp"
+		android:layout_below="@id/emailLayout"
+		android:background="@android:color/white"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		app:layout_constraintBottom_toBottomOf="@+id/passwordLayout"
+	/>
 
     <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/button"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="16dp"
-      android:background="@drawable/connexion_btn"
-    android:text="Connexion"
-    android:textColor="@android:color/white"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
-    app:layout_constraintVertical_bias="0.23" />
+		android:id="@+id/button"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="16dp"
+		android:background="@drawable/connexion_btn"
+		android:text="Connexion"
+		android:textColor="@android:color/white"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
+		app:layout_constraintVertical_bias="0.23"
+	/>
 
     <TextView
-      android:id="@+id/textView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Pas de compte ? Créer votre compte ici."
-      android:textColor="@android:color/white"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/button"
-      app:layout_constraintVertical_bias="0.106" />
+		android:id="@+id/textView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Pas de compte ? Créer votre compte ici."
+		android:textColor="@android:color/white"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button"
+		app:layout_constraintVertical_bias="0.106"
+	/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

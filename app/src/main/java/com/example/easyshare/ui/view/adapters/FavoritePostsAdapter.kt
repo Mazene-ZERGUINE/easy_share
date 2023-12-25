@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
 import com.example.easyshare.models.ApiResponse
 import com.example.easyshare.models.PublicationFavori
+import com.example.easyshare.ui.view.ProductDetailsActivity
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.utilis.TokenManager
-import com.example.easyshare.view.ProductDetailsActivity
-import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
-import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 
 class FavoritePostsAdapter(
     val favoritePosts: ApiResponse<PublicationFavori>
