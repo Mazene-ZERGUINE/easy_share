@@ -14,9 +14,11 @@ import com.example.easyshare.ui.view.ProductDetailsActivity
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.utilis.TokenManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FavoritePostsAdapter(
-    val favoritePosts: ApiResponse<PublicationFavori>
+    private val favoritePosts: ApiResponse<PublicationFavori>,
+    private val onUnstar: (Int) -> Unit
 ) : RecyclerView.Adapter<FavoritePostsAdapter.FavoritePostsViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -45,14 +47,23 @@ class FavoritePostsAdapter(
         private var publishedAtTv: TextView
         private var profileNameTv: TextView
         private var productIm: ImageView
+        private var starButton: FloatingActionButton
 
         init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
             publishedAtTv = itemView.findViewById(R.id.productPublishedAt)
             profileNameTv = itemView.findViewById(R.id.profileNameTv)
             productIm = itemView.findViewById(R.id.productIm)
+            starButton = itemView.findViewById(R.id.favoriteFab)
 
             this.listenToItemView(itemView)
+            this.listenToStarButton()
+        }
+
+        fun bind(currentFavoritePost: PublicationFavori) {
+            productTitleTv.text = currentFavoritePost?.publication?.titre
+            publishedAtTv.text = currentFavoritePost?.publication?.createdAt
+            profileNameTv.text = TokenManager.getPseudonymeFromToken()
         }
 
         private fun listenToItemView(itemView: View) {
@@ -73,10 +84,12 @@ class FavoritePostsAdapter(
             }
         }
 
-        fun bind(currentFavoritePost: PublicationFavori) {
-            productTitleTv.text = currentFavoritePost?.publication?.titre
-            publishedAtTv.text = currentFavoritePost?.publication?.createdAt
-            profileNameTv.text = TokenManager.getPseudonymeFromToken()
+        private fun listenToStarButton() {
+            starButton.setOnClickListener {
+                val favoritePostId = favoritePosts.data.rows[adapterPosition].publicationId
+
+                onUnstar(favoritePostId)
+            }
         }
     }
 }

@@ -12,4 +12,8 @@ class UserRepository(private val apiService: ApiService) {
 
         return apiService.getFavoritePosts(pseudonyme)
     }
+
+    fun unstarPost(id: Int): Flowable<Unit> {
+        return apiService.unstarPost(id)
+    }
 }

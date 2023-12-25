@@ -10,6 +10,7 @@ import com.example.easyshare.models.SignupResponse
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -22,6 +23,13 @@ interface ApiService {
     fun userLogin(
         @Body request: LoginRequest
     ): Flowable<LoginResponse>
+
+    // #region favori
+    @DELETE("favoris/publications/{id}")
+    fun unstarPost(
+        @Path("id") id: Int
+    ): Flowable<Unit>
+    // #endregion
 
     // #region utilisateur
     @GET("utilisateurs/{pseudonyme}/favoris")

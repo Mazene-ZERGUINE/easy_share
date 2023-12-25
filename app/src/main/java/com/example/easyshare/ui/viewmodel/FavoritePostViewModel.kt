@@ -27,6 +27,22 @@ class FavoritePostViewModel(private val userRepository: UserRepository) : ViewMo
         this.observeOnFavoritePosts()
     }
 
+    fun unstarPost(id: Int) {
+        this.userRepository
+            .unstarPost(id)
+            .observeOn(Schedulers.io())
+            .subscribe(
+                {
+                    Log.d("unstarPost", "Post unstarred")
+                    this.getFavoritePosts()
+                },
+                { e ->
+                    Log.d("unstarPost", "Error while unstar post")
+                }
+            )
+            .addTo(disposeBag)
+    }
+
     private fun getFavoritePosts() {
         this.userRepository
             .getFavoritePosts()
