@@ -1,4 +1,4 @@
-package com.example.easyshare.view
+package com.example.easyshare.ui.view
 
 import LoginViewModel
 import Utils

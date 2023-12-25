@@ -1,4 +1,4 @@
-package com.example.easyshare.fragments
+package com.example.easyshare.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

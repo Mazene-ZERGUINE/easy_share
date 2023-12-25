@@ -1,4 +1,4 @@
-package com.example.easyshare.view.adapters
+package com.example.easyshare.ui.view.adapters
 
 import android.content.Intent
 import android.util.Log
@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
 import com.example.easyshare.models.Data
-import com.example.easyshare.view.ProductDetailsActivity
+import com.example.easyshare.ui.view.ProductDetailsActivity
 
 class ProductsListAdapter(
     val products: List<Data>

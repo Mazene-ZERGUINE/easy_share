@@ -1,4 +1,4 @@
-package com.example.easyshare.view
+package com.example.easyshare.ui.view
 
 import Utils
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.easyshare.R
-import com.example.easyshare.viewmodel.SignupViewModel
+import com.example.easyshare.ui.viewmodel.SignupViewModel
 import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.HttpException

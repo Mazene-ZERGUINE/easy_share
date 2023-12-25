@@ -1,4 +1,4 @@
-package com.example.easyshare.view
+package com.example.easyshare.ui.view
 
 import android.os.Bundle
 import android.widget.ProgressBar
@@ -8,8 +8,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
+import com.example.easyshare.ui.viewmodel.ProductViewModel
 import com.example.easyshare.utilis.TokenManager
-import com.example.easyshare.viewmodel.ProductViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

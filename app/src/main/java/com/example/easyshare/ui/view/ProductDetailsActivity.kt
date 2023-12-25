@@ -1,10 +1,10 @@
-package com.example.easyshare.view
+package com.example.easyshare.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
-import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
-import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 
 class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductDetailsBinding
