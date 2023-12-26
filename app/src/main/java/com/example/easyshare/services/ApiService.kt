@@ -9,6 +9,7 @@ import com.example.easyshare.models.LoginResponse
 import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.models.SignupRequest
 import com.example.easyshare.models.SignupResponse
+import com.example.easyshare.models.UserData
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -54,5 +55,10 @@ interface ApiService {
     fun signup(
         @Body request: SignupRequest
     ): Flowable<SignupResponse>
+
+    @GET("utilisateurs/{pseudonyme}")
+    fun getUserData(
+        @Path("pseudonyme") pseudonyme: String
+    ): Flowable<UserData>
     // #endregion
 }
