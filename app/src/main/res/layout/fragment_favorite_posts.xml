@@ -55,7 +55,7 @@
 					android:backgroundTint="@color/white"
 					android:clickable="true"
 					android:contentDescription="favorite"
-					android:src="@drawable/ic_favorite"
+					android:src="@drawable/ic_favorite_fill"
 					app:elevation="0dp"
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintEnd_toEndOf="parent"
