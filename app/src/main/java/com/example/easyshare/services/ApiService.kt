@@ -2,12 +2,15 @@ package com.example.easyshare.services
 
 import com.example.easyshare.models.AllProductInfo
 import com.example.easyshare.models.ApiResponse
+import com.example.easyshare.models.GenericApiResponse
+import com.example.easyshare.models.IsStarredPost
 import com.example.easyshare.models.LoginRequest
 import com.example.easyshare.models.LoginResponse
 import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.models.SignupRequest
 import com.example.easyshare.models.SignupResponse
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -25,6 +28,11 @@ interface ApiService {
     ): Flowable<LoginResponse>
 
     // #region favori
+    @GET("favoris/publications/{id}")
+    fun isStarredPost(
+        @Path("id") id: Int
+    ): Observable<GenericApiResponse<IsStarredPost>>
+
     @POST("favoris/publications/{id}")
     fun starPost(
         @Path("id") id: Int

@@ -15,7 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListAdapter(
     val products: List<Data>,
-    private val onStar: (Int) -> Unit
+    private val isPostStarred: (String) -> Boolean?,
+    private val onStar: (Int) -> Unit,
+    private val onUnstar: (Int) -> Unit
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
     companion object {
         const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
@@ -42,6 +44,7 @@ class ProductsListAdapter(
         position: Int
     ) {
         val currentProduct = products[position]
+
         holder.bind(currentProduct)
     }
 
@@ -52,6 +55,7 @@ class ProductsListAdapter(
         private var productIm: ImageView
         private var productCommentsSize: TextView
         private var starButton: FloatingActionButton
+        private var starFillButton: FloatingActionButton
 
         init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
@@ -60,6 +64,7 @@ class ProductsListAdapter(
             productIm = itemView.findViewById(R.id.productIm)
             productCommentsSize = itemView.findViewById(R.id.comments_size_tv)
             starButton = itemView.findViewById(R.id.favoriteFab)
+            starFillButton = itemView.findViewById(R.id.favoriteFillFab)
 
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
@@ -76,6 +81,7 @@ class ProductsListAdapter(
             }
 
             this.listenToStarButton()
+            this.listenToStarFillButton()
         }
 
         fun bind(productData: Data) {
@@ -83,13 +89,45 @@ class ProductsListAdapter(
             publishedAtTv.text = productData.createdAt
             profileNameTv.text = productData.utilisateur.pseudonyme
             productCommentsSize.text = productData.comments[0].comment
+
+            if (adapterPosition != RecyclerView.NO_POSITION) {
+                this.setStarAndStarFillButtonVisibility()
+            }
+        }
+
+        private fun setStarAndStarFillButtonVisibility() {
+            val post = products[adapterPosition]
+
+            if (isPostStarred(post.publicationId.toString()) == true) {
+                starButton.visibility = View.GONE
+                starFillButton.visibility = View.VISIBLE
+            } else {
+                starButton.visibility = View.VISIBLE
+                starFillButton.visibility = View.GONE
+            }
         }
 
         private fun listenToStarButton() {
             starButton.setOnClickListener {
-                val postId = products[adapterPosition].publicationId
+                onStar(products[adapterPosition].publicationId)
+                this.toggleStarAndStarFillButtons()
+            }
+        }
 
-                onStar(postId)
+        private fun listenToStarFillButton() {
+            starFillButton.setOnClickListener {
+                onUnstar(products[adapterPosition].publicationId)
+                this.toggleStarAndStarFillButtons()
+            }
+        }
+
+        private fun toggleStarAndStarFillButtons() {
+            if (starButton.visibility == View.VISIBLE) {
+                starButton.visibility = View.GONE
+                starFillButton.visibility = View.VISIBLE
+            } else {
+                starButton.visibility = View.VISIBLE
+                starFillButton.visibility = View.GONE
             }
         }
     }

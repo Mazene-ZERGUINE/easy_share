@@ -56,11 +56,26 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        this.productViewModel.reloadPosts()
+    }
+
     private fun setUpProductsList(products: List<Data>) {
-        productsListRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        productsListRv.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         productsListRv.adapter =
-            ProductsListAdapter(products) { postId ->
-                this.productViewModel.starPost(postId)
-            }
+            ProductsListAdapter(
+                products,
+                isPostStarred = { postId ->
+                    this.productViewModel.isPostStarred(postId)
+                },
+                onStar = { postId ->
+                    this.productViewModel.starPost(postId)
+                },
+                onUnstar = { postId ->
+                    this.productViewModel.unstarPost(postId)
+                }
+            )
     }
 }
