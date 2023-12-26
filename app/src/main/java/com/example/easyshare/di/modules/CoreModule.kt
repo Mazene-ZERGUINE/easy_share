@@ -4,6 +4,7 @@ import LoginViewModel
 import com.example.easyshare.repositories.AuthRepository
 import com.example.easyshare.repositories.ProductsRepository
 import com.example.easyshare.repositories.UserRepository
+import com.example.easyshare.ui.viewmodel.AccountViewModel
 import com.example.easyshare.ui.viewmodel.ProductViewModel
 import com.example.easyshare.ui.viewmodel.SignupViewModel
 import com.example.easyshare.viewmodel.FavoritePostViewModel
@@ -23,5 +24,8 @@ internal val coreModule =
         viewModel { SignupViewModel(get()) }
 
         single { UserRepository(get()) }
+
         viewModel { FavoritePostViewModel(get()) }
+
+        viewModel { AccountViewModel(get()) }
     }
