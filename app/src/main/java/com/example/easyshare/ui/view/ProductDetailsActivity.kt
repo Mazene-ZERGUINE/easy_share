@@ -25,18 +25,34 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
-        starButton = findViewById(R.id.favorite_action_btn)
-        starFillButton = findViewById(R.id.favorite_action_fill_btn)
-        isPostStarred = this.productViewModel.isPostStarred(productId) == true
-
         setContentView(binding.root)
 
         getProductInfoFromIntent()
         setProductInfoInView()
 
+        starButton = findViewById(R.id.favorite_action_btn)
+        starFillButton = findViewById(R.id.favorite_action_fill_btn)
+
+        this.observeIsPostStarredData()
+
         this.setStarAndStarFillButtonVisibility()
         this.listenToStarButton()
         this.listenToStarFillButton()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        this.observeIsPostStarredData()
+        this.getProductInfoFromIntent()
+        this.setProductInfoInView()
+        this.setStarAndStarFillButtonVisibility()
+    }
+
+    private fun observeIsPostStarredData() {
+        this.productViewModel.isPostStarredData.observe(this) {
+            isPostStarred = it
+        }
     }
 
     private fun setProductInfoInView() {

@@ -24,6 +24,8 @@ class ProductViewModel(
 
     val completeProductData: MutableLiveData<List<Data>> = MutableLiveData()
 
+    val isPostStarredData = MutableLiveData<Boolean>()
+
     init {
         getCompleteProductData()
     }
@@ -41,6 +43,7 @@ class ProductViewModel(
             .observeOn(Schedulers.io())
             .subscribe(
                 {
+                    this.isPostStarredData.postValue(true)
                 },
                 { e ->
                     Log.d("starPost", "Error while star post")
@@ -53,6 +56,7 @@ class ProductViewModel(
             .observeOn(Schedulers.io())
             .subscribe(
                 {
+                    this.isPostStarredData.postValue(false)
                 },
                 { e ->
                     Log.d("starPost", "Error while star post")
