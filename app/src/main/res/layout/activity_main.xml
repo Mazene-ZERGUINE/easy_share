@@ -33,4 +33,10 @@
 		app:menu="@menu/bottom_nav"
 	/>
 
+    <include
+		layout="@layout/overlay"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+	/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

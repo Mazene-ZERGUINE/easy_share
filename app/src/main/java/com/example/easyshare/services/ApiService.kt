@@ -60,5 +60,10 @@ interface ApiService {
     fun getUserData(
         @Path("pseudonyme") pseudonyme: String
     ): Flowable<UserData>
+
+    @DELETE("utilisateurs/{userId}")
+    fun deleteUser(
+        @Path("userId") userId: Int
+    ): Flowable<Unit>
     // #endregion
 }

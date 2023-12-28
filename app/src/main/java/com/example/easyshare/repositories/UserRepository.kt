@@ -32,4 +32,8 @@ class UserRepository(private val apiService: ApiService) {
     fun getUserData(userName: String): Flowable<UserData> {
         return apiService.getUserData(userName)
     }
+
+    fun deleteUser(userId: Int): Flowable<Unit> {
+        return apiService.deleteUser(userId)
+    }
 }
