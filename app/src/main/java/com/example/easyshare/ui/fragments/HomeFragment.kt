@@ -48,7 +48,8 @@ class HomeFragment : Fragment() {
         this.productsListRv = binding.productsRv
 
         this.productViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
-            binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+            this.binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+            this.productsListRv.visibility = if (isDataLoading) View.GONE else View.VISIBLE
         }
 
         this.productViewModel.completeProductData.observe(viewLifecycleOwner) {
