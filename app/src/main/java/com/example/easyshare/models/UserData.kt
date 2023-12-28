@@ -10,7 +10,8 @@ data class UserData(
     val nom: String,
     val prenom: String,
     val pseudonyme: String,
-    val statut: String,
     @SerializedName("utilisateur_id")
-    val utilisateurId: Int
+    val utilisateurId: Int,
+    @SerializedName("mot_de_passe")
+    val motDePass: String
 ) : Parcelable

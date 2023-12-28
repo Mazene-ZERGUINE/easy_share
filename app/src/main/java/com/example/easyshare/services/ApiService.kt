@@ -17,6 +17,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -66,4 +67,10 @@ interface ApiService {
         @Path("userId") userId: Int
     ): Flowable<Unit>
     // #endregion
+
+    @PUT("utilisateurs/{userId}")
+    fun updateUser(
+        @Path("userId") userId: Int,
+        @Body payload: UserData
+    ): Flowable<Unit>
 }

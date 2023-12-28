@@ -18,6 +18,9 @@ class AccountViewModel(private val userRepository: UserRepository) : ViewModel()
     val deleteAccountResult = MutableLiveData<Unit>()
     val deleteAccountError = MutableLiveData<Throwable>()
 
+    val updateUserResult = MutableLiveData<Unit>()
+    val updateUserError = MutableLiveData<Throwable>()
+
     fun getUserByPseudonyme(pseudonyme: String) {
         userRepository.getUserData(pseudonyme).observeOn(Schedulers.io()).subscribeBy(
             onNext = { getUserResponse ->
@@ -36,6 +39,20 @@ class AccountViewModel(private val userRepository: UserRepository) : ViewModel()
             },
             onError = { deleteUserErr ->
                 deleteAccountError.postValue(deleteUserErr)
+            }
+        ).addTo(disposeBag)
+    }
+
+    fun updateUser(
+        payload: UserData,
+        userId: Int
+    ) {
+        userRepository.updateUserProfile(payload, userId).observeOn(Schedulers.io()).subscribeBy(
+            onNext = { updateUserResponse ->
+                updateUserResult.postValue(updateUserResponse)
+            },
+            onError = { updateUserErr ->
+                updateUserError.postValue(updateUserErr)
             }
         ).addTo(disposeBag)
     }

@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.easyshare.R
+import com.example.easyshare.models.UserData
 import com.example.easyshare.ui.view.LoginActivity
 import com.example.easyshare.ui.viewmodel.AccountViewModel
 import com.example.easyshare.utilis.TokenManager
@@ -33,10 +34,7 @@ class AccountFragment : Fragment() {
     private lateinit var editButton: Button
     private lateinit var deleteButton: ImageView
     private var userId: Int? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var currentUser: UserData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,9 +53,15 @@ class AccountFragment : Fragment() {
         deleteButton = rootView.findViewById(R.id.deleteAccountIcon)
 
         setUserData()
+        observeDeleteAccount()
+        observeUpdateAccount()
 
         deleteButton.setOnClickListener {
             deleteAccount()
+        }
+
+        editButton.setOnClickListener {
+            updateAccount()
         }
 
         return rootView
@@ -68,6 +72,7 @@ class AccountFragment : Fragment() {
 
         accountViewModel.getUserDataResult.observe(viewLifecycleOwner) { response ->
             userId = response.utilisateurId
+            currentUser = response
 
             userNameTv.text = response.pseudonyme
             emailTv.text = response.email
@@ -75,9 +80,53 @@ class AccountFragment : Fragment() {
             nameInput.setText(response.nom)
             lastNameInput.setText(response.prenom)
             emailInput.setText(response.email)
+            passwordInput.setText("")
+        }
+    }
+
+    // click events
+    private fun updateAccount() {
+        val name = nameInput.text.toString()
+        val lastName = lastNameInput.text.toString()
+        val email = emailInput.text.toString()
+        val username = userNameInput.text.toString()
+
+        var password = currentUser?.motDePass
+
+        if (username.trim().isEmpty() || email.trim().isEmpty())
+            {
+                Utils.displayToast(
+                    this.requireContext(),
+                    R.layout.error_toast,
+                    "email et nom d'utilisateur ne peuvent pas etre null",
+                    Toast.LENGTH_SHORT
+                )
+                return
+            }
+
+        if (passwordInput.text.toString().trim().isNotEmpty()) {
+            password = passwordInput.text.toString()
         }
 
-        accountViewModel.getUserError.observe(viewLifecycleOwner) { err ->
+        setOverlay()
+        val message = "Êtes-vous sûr(e) de vouloir modifier votre compte ?"
+        val dialog = Dialog(requireContext())
+        Utils.showCustomDialogBox(message, dialog) { result ->
+            if (result) {
+                clearOverlay()
+                val payload =
+                    UserData(
+                        email,
+                        name,
+                        lastName,
+                        username,
+                        userId!!,
+                        password!!
+                    )
+                accountViewModel.updateUser(payload, userId!!)
+            } else {
+                clearOverlay()
+            }
         }
     }
 
@@ -88,23 +137,38 @@ class AccountFragment : Fragment() {
         Utils.showCustomDialogBox(message, dialog) { result ->
             if (result) {
                 userId?.let { accountViewModel.deleteUserAccount(it) }
-
-                accountViewModel.deleteAccountResult.observe(viewLifecycleOwner) { response ->
-                    println(response)
-                    val intent = Intent(this.requireActivity(), LoginActivity::class.java)
-                    startActivity(intent)
-                }
-
-                accountViewModel.deleteAccountError.observe(viewLifecycleOwner) { err ->
-                    err.printStackTrace()
-                    Utils.displayToast(this.requireContext(), R.layout.error_toast, "Une erreur est survenu !", Toast.LENGTH_SHORT)
-                }
             } else {
                 clearOverlay()
             }
         }
     }
 
+    // observers
+    private fun observeUpdateAccount() {
+        accountViewModel.updateUserResult.observe(viewLifecycleOwner) { response ->
+            Utils.displayToast(this.requireContext(), R.layout.success_toast, "compte modifier", Toast.LENGTH_SHORT)
+            setUserData()
+        }
+
+        accountViewModel.updateUserError.observe(viewLifecycleOwner) { error ->
+            error.printStackTrace()
+            Utils.displayToast(this.requireContext(), R.layout.error_toast, "une erreur est survenu", Toast.LENGTH_SHORT)
+        }
+    }
+
+    private fun observeDeleteAccount()  {
+        accountViewModel.deleteAccountResult.observe(viewLifecycleOwner) { response ->
+            val intent = Intent(this.requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        accountViewModel.deleteAccountError.observe(viewLifecycleOwner) { err ->
+            err.printStackTrace()
+            Utils.displayToast(this.requireContext(), R.layout.error_toast, "Une erreur est survenu !", Toast.LENGTH_SHORT)
+        }
+    }
+
+    // overlay methodes
     private fun setOverlay() {
         val overlayLayout = this.requireActivity().findViewById<View>(R.id.overlayLayout)
         overlayLayout.visibility = View.VISIBLE
