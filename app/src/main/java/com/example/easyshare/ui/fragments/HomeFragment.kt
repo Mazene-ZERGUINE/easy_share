@@ -47,18 +47,26 @@ class HomeFragment : Fragment() {
 
         this.productsListRv = binding.productsRv
 
-        this.productViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
-            binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
-        }
-
-        this.productViewModel.completeProductData.observe(viewLifecycleOwner) {
-            this.setUpProductsList(it)
-        }
+        this.observeIsLoading()
+        this.observeCompleteProductData()
     }
 
     override fun onResume() {
         super.onResume()
         this.productViewModel.reloadPosts()
+    }
+
+    private fun observeCompleteProductData() {
+        this.productViewModel.completeProductData.observe(viewLifecycleOwner) {
+            this.setUpProductsList(it)
+        }
+    }
+
+    private fun observeIsLoading() {
+        this.productViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
+            this.binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+            this.productsListRv.visibility = if (isDataLoading) View.GONE else View.VISIBLE
+        }
     }
 
     private fun setUpProductsList(products: List<Data>) {

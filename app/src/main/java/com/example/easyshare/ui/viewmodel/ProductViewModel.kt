@@ -79,8 +79,8 @@ class ProductViewModel(
 
     private fun getProducts() {
         productRepository.getProducts()
-            .observeOn(Schedulers.io())
-            .doOnTerminate { this.isLoading.postValue(false) }
+            .subscribeOn(Schedulers.io())
+            .doOnSubscribe { this.isLoading.postValue(true) }
             .flatMapObservable { response ->
                 this.productData.onNext(response.data)
 
@@ -95,6 +95,9 @@ class ProductViewModel(
                     }
                     .toList()
                     .toObservable()
+            }
+            .doFinally {
+                this.isLoading.postValue(false)
             }
             .subscribe(
                 { pairs ->
