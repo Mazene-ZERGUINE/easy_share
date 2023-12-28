@@ -3,6 +3,7 @@ package com.example.easyshare.di.modules
 import android.content.Context
 import com.example.easyshare.di.FakeJsonConf
 import com.example.easyshare.services.ApiService
+import com.example.easyshare.utilis.TokenManager
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -31,8 +32,7 @@ internal val remoteModule =
 
 fun createAuthorizationInterceptor(context: Context): Interceptor {
     return Interceptor { chain ->
-        val sharedPreferences = context.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
-        val token = sharedPreferences.getString("ACCESS_TOKEN", null)
+        val token = TokenManager.getToken()
 
         val requestOriginal = chain.request()
         val requestModifie =
