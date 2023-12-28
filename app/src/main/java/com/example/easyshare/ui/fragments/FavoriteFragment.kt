@@ -48,7 +48,8 @@ class FavoriteFragment : Fragment() {
 
     private fun observeIsLoading() {
         this.favoriteViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
-            binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+            this.binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+            this.favoritePostRecyclerView.visibility = if (isDataLoading) View.GONE else View.VISIBLE
         }
     }
 
