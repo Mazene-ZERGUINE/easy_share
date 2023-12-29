@@ -17,5 +17,5 @@ data class UtilisateurSignalement(
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("utilisateur_s")
-    val user: Utilisateur
+    val user: UserData
 ) : Parcelable

@@ -16,7 +16,7 @@ data class Commentaire(
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("utilisateur")
-    val user: Utilisateur,
+    val user: UserData,
     @SerializedName("utilisateur_id")
     val utilisateurId: Int
 ) : Parcelable

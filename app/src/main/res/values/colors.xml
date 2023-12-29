@@ -5,6 +5,8 @@
     <color name="white_50">#80FFFFFF</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bgcolor">#0099ff</color>
+    <color name="background_gradient">#DDE5EF</color>
+    <color name="profile_bg">#e3e1dc</color>
 
     #0099ff
 

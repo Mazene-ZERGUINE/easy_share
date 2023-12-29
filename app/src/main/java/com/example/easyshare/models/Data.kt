@@ -17,7 +17,7 @@ data class Data(
     val titre: String,
     @SerializedName("updated_at")
     val updatedAt: Any,
-    val utilisateur: Utilisateur,
+    val utilisateur: UserData,
     @SerializedName("utilisateur_id")
     val utilisateurId: Int
 )

@@ -9,6 +9,7 @@ import com.example.easyshare.models.LoginResponse
 import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.models.SignupRequest
 import com.example.easyshare.models.SignupResponse
+import com.example.easyshare.models.UserData
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -16,6 +17,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -54,5 +56,21 @@ interface ApiService {
     fun signup(
         @Body request: SignupRequest
     ): Flowable<SignupResponse>
+
+    @GET("utilisateurs/{pseudonyme}")
+    fun getUserData(
+        @Path("pseudonyme") pseudonyme: String
+    ): Flowable<UserData>
+
+    @DELETE("utilisateurs/{userId}")
+    fun deleteUser(
+        @Path("userId") userId: Int
+    ): Flowable<Unit>
     // #endregion
+
+    @PUT("utilisateurs/{userId}")
+    fun updateUser(
+        @Path("userId") userId: Int,
+        @Body payload: UserData
+    ): Flowable<Unit>
 }
