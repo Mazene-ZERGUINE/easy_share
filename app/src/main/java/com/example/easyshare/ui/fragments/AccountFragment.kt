@@ -93,16 +93,15 @@ class AccountFragment : Fragment() {
 
         var password = currentUser?.motDePass
 
-        if (username.trim().isEmpty() || email.trim().isEmpty())
-            {
-                Utils.displayToast(
-                    this.requireContext(),
-                    R.layout.error_toast,
-                    "email et nom d'utilisateur ne peuvent pas etre null",
-                    Toast.LENGTH_SHORT
-                )
-                return
-            }
+        if (username.trim().isEmpty() || email.trim().isEmpty()) {
+            Utils.displayToast(
+                this.requireContext(),
+                R.layout.error_toast,
+                "email et nom d'utilisateur ne peuvent pas etre null",
+                Toast.LENGTH_SHORT
+            )
+            return
+        }
 
         if (passwordInput.text.toString().trim().isNotEmpty()) {
             password = passwordInput.text.toString()
@@ -156,7 +155,7 @@ class AccountFragment : Fragment() {
         }
     }
 
-    private fun observeDeleteAccount()  {
+    private fun observeDeleteAccount() {
         accountViewModel.deleteAccountResult.observe(viewLifecycleOwner) { response ->
             val intent = Intent(this.requireActivity(), LoginActivity::class.java)
             startActivity(intent)
