@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.easyshare.R
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
 import com.example.easyshare.view.adapters.CommentsAdapter
 import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
@@ -50,8 +51,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     private fun setProductInfoInView() {
         binding.productDetailTitleTv.text = this.productTitle
-        binding.productDetailCreatedAtTv.text = this.productCreatedAt
-        binding.productCreatedByTv.text = this.productCreatedBy
+        binding.productDetailCreatedAtTv.text =getString(R.string.created_At,  this.productCreatedAt)
+        binding.productCreatedByTv.text = getString(R.string.created_by, this.productCreatedBy)
     }
 
     private fun observeProductComments() {
