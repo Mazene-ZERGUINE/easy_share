@@ -27,7 +27,11 @@ class ProductDetailsActivity : AppCompatActivity() {
         getProductInfoFromIntent()
         setProductInfoInView()
         observeProductComments()
+
+        getMoreComments()
     }
+
+
 
     private fun getProductInfoFromIntent() {
         productTitle = intent.getStringExtra(PRODUCT_NAME) ?: ""
@@ -48,5 +52,9 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.commentsRv.adapter = CommentsAdapter(comments)
         }
     }
-
+    private fun getMoreComments() {
+        binding.toggleLimitButton.setOnClickListener {
+            commentViewModel.setIsLimitedComments()
+        }
+    }
 }
