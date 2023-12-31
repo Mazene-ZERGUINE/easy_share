@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
 import com.example.easyshare.view.adapters.CommentsAdapter
 import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
 import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.viewmodel.CommentViewModel
@@ -20,6 +21,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var productTitle: String
     private lateinit var productId: String
     private lateinit var productCreatedAt: String
+    private lateinit var productCreatedBy: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         productTitle = intent.getStringExtra(PRODUCT_NAME) ?: ""
         productId = intent.getStringExtra(PRODUCT_ID) ?: ""
         productCreatedAt = intent.getStringExtra(PRODUCT_CREATED_AT) ?: ""
+        productCreatedBy = intent.getStringExtra(PRODUCT_CREATED_BY) ?: ""
 
         productId?.let {
             this.commentViewModel.loadComments(it.toInt())
@@ -48,6 +51,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun setProductInfoInView() {
         binding.productDetailTitleTv.text = this.productTitle
         binding.productDetailCreatedAtTv.text = this.productCreatedAt
+        binding.productCreatedByTv.text = this.productCreatedBy
     }
 
     private fun observeProductComments() {

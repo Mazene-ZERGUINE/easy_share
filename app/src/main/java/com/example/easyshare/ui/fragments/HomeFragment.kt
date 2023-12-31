@@ -93,6 +93,7 @@ class HomeFragment : Fragment(), OnProductClicked {
         intent.putExtra(PRODUCT_ID, productData.publicationId.toString())
         intent.putExtra(PRODUCT_NAME, productData.titre)
         intent.putExtra(PRODUCT_CREATED_AT, DateUtils.formatReadableDate(productData.createdAt))
+        intent.putExtra(PRODUCT_CREATED_BY, productData.utilisateur.pseudonyme)
         startActivity(intent)
     }
 
