@@ -7,7 +7,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".ui.view.ProductDetailsActivity"
-    android:background="@color/white_blue"
 >
 
         <com.google.android.material.appbar.AppBarLayout
@@ -23,25 +22,31 @@
 			app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
 		>
 
+                <ImageView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/product_detail_im"
+				android:scaleType="centerCrop"
+				app:layout_collapseMode="parallax"
+			/>
+
+
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
-
 
 
     <androidx.core.widget.NestedScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@drawable/product_detail_rect"
-        android:backgroundTint="@color/white_blue"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 	>
 
         <androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-            android:background="@color/white_blue"
+			android:paddingTop="10dp"
 		>
 
             <View
@@ -86,8 +91,6 @@
 					android:contentDescription="add to favorite"
 					android:src="@drawable/ic_favorite"
 				/>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
 					android:id="@+id/favorite_action_fill_btn"
 					android:layout_width="wrap_content"
@@ -97,11 +100,6 @@
 					android:contentDescription="remove_from favorite"
 					android:src="@drawable/ic_favorite_fill"
 				/>
-=======
-=======
->>>>>>> a53e9f8a48296bf4a0deda3fe8f0d51ebc5d5f74
-
->>>>>>> e48259c ([testcommit]: test)
 
             </LinearLayout>
 
@@ -118,7 +116,7 @@
                 <ImageButton
 					android:layout_width="wrap_content"
 					android:layout_height="48dp"
-					android:backgroundTint="@color/white_blue"
+					android:backgroundTint="@color/white"
 					android:contentDescription="comment"
 					android:src="@drawable/ic_comment"
 				/>
@@ -133,7 +131,7 @@
                 <ImageButton
 					android:layout_width="wrap_content"
 					android:layout_height="48dp"
-					android:backgroundTint="@color/white_blue"
+					android:backgroundTint="@color/white"
 					android:contentDescription="like"
 					android:src="@drawable/ic_like"
 				/>
@@ -146,170 +144,55 @@
 
             </LinearLayout>
 
-
             <LinearLayout
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-				android:id="@+id/product_detail_info"
->>>>>>> e48259c ([testcommit]: test)
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="15dp"
 				android:orientation="vertical"
 				app:layout_constraintTop_toBottomOf="@id/likes_comments"
 			>
-=======
-=======
->>>>>>> a53e9f8a48296bf4a0deda3fe8f0d51ebc5d5f74
-              android:id="@+id/product_detail_info"
-              android:layout_width="match_parent"
-              android:padding="15dp"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              app:layout_constraintTop_toBottomOf="@id/likes_comments"
-              >
-<<<<<<< HEAD
->>>>>>> 01ed492 ([comments]: fixing design)
-=======
->>>>>>> a53e9f8a48296bf4a0deda3fe8f0d51ebc5d5f74
 
                 <TextView
-                  android:id="@+id/product_createdBy_tv"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="15dp"
-                  android:text="Par : " />
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="15dp"
+					android:text="Par :"
+				/>
 
                 <TextView
-                  android:id="@+id/product_detail_createdAt_tv"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
-                  android:text="Pubished at"
-                  android:textSize="16dp"
-                  android:textStyle="bold" />
+					android:id="@+id/product_detail_publishedAt_tv"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
+					android:text="Pubished at"
+					android:textSize="16dp"
+					android:textStyle="bold"
+				/>
 
                 <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
-                  android:text="Description :"
-                  android:textSize="20dp"
-                  android:textStyle="bold" />
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
+					android:text="Description :"
+					android:textSize="20dp"
+					android:textStyle="bold"
+				/>
 
                 <TextView
-                  android:id="@+id/product_details_description"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginEnd="15dp"
-                  android:layout_marginBottom="10dp"
-                  android:text="Description content Description content Description content Description contentvvDescription contentDescription contentDescription content Description contentDescription contentDescription contentDescription contentDescription content"
-                  android:textSize="17dp" />
-
-                <com.google.android.material.button.MaterialButton
-
-                  android:id="@+id/contact_user_btn"
-                  android:layout_width="match_parent"
-                  android:textSize="20dp"
-                  android:layout_height="60dp"
-                  android:textColor="@color/white"
-                  android:backgroundTint="@color/black"
-                  app:cornerRadius="10dp"
-                  android:text="Contacter"
-                  android:textStyle="bold"
-                  android:layout_margin="15dp"
-                  />
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="15dp"
+					android:layout_marginBottom="10dp"
+					android:text="Description content Description content Description content Description contentvvDescription contentDescription contentDescription content Description contentDescription contentDescription contentDescription contentDescription content"
+					android:textSize="17dp"
+				/>
 
             </LinearLayout>
-
-
-
-
-            <androidx.cardview.widget.CardView
-				android:id="@+id/comments_section"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginHorizontal="15dp"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="#F8F9FA"
-				app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
-			>
-                <LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical"
-				>
-                    <com.google.android.material.button.MaterialButton
-
-                      android:id="@+id/toggleLimitButton"
-                      android:layout_width="wrap_content"
-                      android:textSize="15dp"
-                      android:layout_height="40dp"
-                      android:textColor="@color/black"
-                      android:background="@drawable/custom_button_background"
-                      android:text="Load more comments.."
-                      android:textAllCaps="false"
-                      android:layout_marginTop="10dp"
-                      android:layout_marginStart="15dp"
-                       />
-
-                    <androidx.recyclerview.widget.RecyclerView
-						android:id="@+id/comments_rv"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						tools:listitem="@layout/fragment_comment"
-						tools:itemCount="1"
-                        android:padding="15dp"
-					/>
-
-                    <EditText
-                      android:id="@+id/editTextMultiLine"
-                      android:layout_width="match_parent"
-                      android:layout_height="67dp"
-                      android:padding="10dp"
-                      android:hint="User comments will be visible here."
-                      android:layout_marginHorizontal="15dp"
-                      android:background="@drawable/text_input_background"
-                      android:inputType="textMultiLine"
-                      android:gravity="top|start"
-                      android:scrollbars="vertical"/>
-
-                    <com.google.android.material.button.MaterialButton
-
-                      android:id="@+id/publish_comment_btn"
-                      android:layout_width="wrap_content"
-                      android:textSize="15dp"
-                      android:layout_height="40dp"
-                      android:textColor="@color/black"
-                      android:background="@drawable/custom_button_background"
-                      android:text="Publier"
-                      android:textAllCaps="false"
-                      android:layout_marginTop="10dp"
-                      android:layout_marginStart="15dp"
-                      />
-
-                </LinearLayout>
-
-
-
-
-            </androidx.cardview.widget.CardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <ImageView
-      android:id="@+id/product_detail_im"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:scaleType="centerCrop"
-      app:layout_anchor="@+id/appbar"
-      app:layout_anchorGravity="center"
-      app:layout_collapseMode="parallax" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
