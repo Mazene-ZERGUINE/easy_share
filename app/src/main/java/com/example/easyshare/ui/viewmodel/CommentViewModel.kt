@@ -46,7 +46,7 @@ class CommentViewModel(private val productsRepository: ProductsRepository) : Vie
             this.isLimitEnabled.observeOn(Schedulers.io()),
             BiFunction {
                     comments: List<Commentaire>, isLimited: Boolean ->
-                if (!isLimited) comments.take(3) else comments
+                if (!isLimited) comments.take(1) else comments
             }
         ).subscribe({
             this.completeComments.postValue(it)
