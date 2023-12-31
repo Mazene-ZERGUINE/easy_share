@@ -148,14 +148,15 @@
 			>
 
                 <TextView
+                    android:id="@+id/product_createdBy_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginBottom="15dp"
-					android:text="Par :"
+					android:text="Par : "
 				/>
 
                 <TextView
-					android:id="@+id/product_detail_publishedAt_tv"
+					android:id="@+id/product_detail_createdAt_tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginBottom="10dp"
@@ -188,7 +189,7 @@
             <androidx.cardview.widget.CardView
 				android:id="@+id/comments_section"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="300dp"
 				android:layout_marginHorizontal="15dp"
 				app:cardCornerRadius="10dp"
 				app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
