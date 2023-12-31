@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
 import com.example.easyshare.models.Commentaire
+import com.example.easyshare.utilis.DateUtils
 
 class CommentsAdapter(private val comments: List<Commentaire>) : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>() {
     override fun onCreateViewHolder(
@@ -41,7 +42,7 @@ class CommentsAdapter(private val comments: List<Commentaire>) : RecyclerView.Ad
         fun bind(comment: Commentaire) {
             commentTv.text = comment.comment
             userName.text = comment.user.pseudonyme
-            publishedAtComment.text = Utils.calculateTimeDifference(comment.createdAt)
+            publishedAtComment.text = DateUtils.calculateTimeDifference(comment.createdAt)
         }
     }
 }
