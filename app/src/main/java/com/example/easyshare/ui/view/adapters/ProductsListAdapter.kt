@@ -14,14 +14,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListAdapter(
     val products: List<Data>,
+<<<<<<< HEAD:app/src/main/java/com/example/easyshare/ui/view/adapters/ProductsListAdapter.kt
     private val isPostStarred: (String) -> Boolean?,
     private val onStar: (Int) -> Unit,
     private val onUnstar: (Int) -> Unit
+=======
+    private val onProductClicked: OnProductClicked
+>>>>>>> df667ba ([productsDetails]: refactor onClickProduct):app/src/main/java/com/example/easyshare/view/adapters/ProductsListAdapter.kt
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
+
     companion object {
-        const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
-        const val PRODUCT_NAME = "com.example.easyshare.fragments.title"
-        const val PRODUCT_COMMENTS = "com.example.easyshare.fragments.COMMENTS"
+        const val PRODUCT_NAME = "product_name"
+        const val PRODUCT_ID = "product_id"
     }
 
     override fun onCreateViewHolder(
@@ -43,7 +47,13 @@ class ProductsListAdapter(
         position: Int
     ) {
         val currentProduct = products[position]
+<<<<<<< HEAD:app/src/main/java/com/example/easyshare/ui/view/adapters/ProductsListAdapter.kt
 
+=======
+        holder.itemView.setOnClickListener {
+            onProductClicked.displayProductDetails(currentProduct)
+        }
+>>>>>>> df667ba ([productsDetails]: refactor onClickProduct):app/src/main/java/com/example/easyshare/view/adapters/ProductsListAdapter.kt
         holder.bind(currentProduct)
     }
 
@@ -131,4 +141,9 @@ class ProductsListAdapter(
             productCommentsSize.text = productData.publicationId.toString()
         }
     }
+}
+
+
+interface OnProductClicked {
+    fun displayProductDetails(productData: Data)
 }

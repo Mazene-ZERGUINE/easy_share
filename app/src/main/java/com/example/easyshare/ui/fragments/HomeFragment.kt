@@ -1,5 +1,6 @@
 package com.example.easyshare.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import com.example.easyshare.ui.view.adapters.ProductsListAdapter
 import com.example.easyshare.ui.viewmodel.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnProductClicked {
     private val productViewModel: ProductViewModel by viewModel()
 
     private lateinit var binding: FragmentHomeBinding
@@ -86,4 +87,12 @@ class HomeFragment : Fragment() {
                 }
             )
     }
+
+    override fun displayProductDetails(productData: Data) {
+        val intent = Intent(context, ProductDetailsActivity::class.java)
+        intent.putExtra(PRODUCT_ID, productData.publicationId.toString())
+        intent.putExtra(PRODUCT_NAME, productData.titre)
+        startActivity(intent)
+    }
+
 }

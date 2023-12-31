@@ -1,6 +1,7 @@
 package com.example.easyshare.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
@@ -47,4 +48,5 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.commentsRv.adapter = CommentsAdapter(comments)
         }
     }
+
 }
