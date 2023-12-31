@@ -1,4 +1,4 @@
-package com.example.easyshare.ui.fragments
+package com.example.easyshare.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,15 @@ import com.example.easyshare.databinding.FragmentHomeBinding
 import com.example.easyshare.di.injectModuleDependencies
 import com.example.easyshare.di.parseAndInjectConfiguration
 import com.example.easyshare.models.Data
-import com.example.easyshare.ui.view.adapters.ProductsListAdapter
-import com.example.easyshare.ui.viewmodel.ProductViewModel
+import com.example.easyshare.utilis.DateUtils
+import com.example.easyshare.view.ProductDetailsActivity
+import com.example.easyshare.view.adapters.OnProductClicked
+import com.example.easyshare.view.adapters.ProductsListAdapter
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
+import com.example.easyshare.viewmodel.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), OnProductClicked {
@@ -48,44 +55,19 @@ class HomeFragment : Fragment(), OnProductClicked {
 
         this.productsListRv = binding.productsRv
 
-        this.observeIsLoading()
-        this.observeCompleteProductData()
-    }
+        this.productViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
+            binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
+        }
 
-    override fun onResume() {
-        super.onResume()
-        this.productViewModel.reloadPosts()
-    }
-
-    private fun observeCompleteProductData() {
         this.productViewModel.completeProductData.observe(viewLifecycleOwner) {
             this.setUpProductsList(it)
         }
     }
 
-    private fun observeIsLoading() {
-        this.productViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
-            this.binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
-            this.productsListRv.visibility = if (isDataLoading) View.GONE else View.VISIBLE
-        }
-    }
-
     private fun setUpProductsList(products: List<Data>) {
-        productsListRv.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        productsListRv.adapter =
-            ProductsListAdapter(
-                products,
-                isPostStarred = { postId ->
-                    this.productViewModel.isPostStarred(postId)
-                },
-                onStar = { postId ->
-                    this.productViewModel.starPost(postId)
-                },
-                onUnstar = { postId ->
-                    this.productViewModel.unstarPost(postId)
-                }
-            )
+        val productsAdapter = ProductsListAdapter(products, this)
+        productsListRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        productsListRv.adapter = productsAdapter
     }
 
     override fun displayProductDetails(productData: Data) {
