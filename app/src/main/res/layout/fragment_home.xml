@@ -34,7 +34,7 @@
 			android:id="@+id/products_rv"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			tools:listitem="@layout/fragment_comment"
+			tools:listitem="@layout/fragment_product"
 			tools:itemCount="3"
 		/>
     </LinearLayout>
