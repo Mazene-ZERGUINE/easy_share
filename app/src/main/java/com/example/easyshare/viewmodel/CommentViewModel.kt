@@ -54,4 +54,9 @@ class CommentViewModel(private val productsRepository: ProductsRepository) : Vie
             Log.d("getAllComments", "failed to get comments")
         }).addTo(disposBag)
     }
+
+
+    private fun setIsLimitedComments(isLimited: Boolean){
+        this.isLimitEnabled.onNext(!isLimited)
+    }
 }

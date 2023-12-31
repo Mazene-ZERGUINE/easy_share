@@ -12,12 +12,13 @@ import com.example.easyshare.models.Data
 import com.example.easyshare.view.ProductDetailsActivity
 
 class ProductsListAdapter(
-    val products: List<Data>
+    val products: List<Data>,
+    private val onProductClicked: OnProductClicked
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
+
     companion object {
-        const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
-        const val PRODUCT_NAME = "com.example.easyshare.fragments.title"
-        const val PRODUCT_COMMENTS = "com.example.easyshare.fragments.COMMENTS"
+        const val PRODUCT_NAME = "product_name"
+        const val PRODUCT_ID = "product_id"
     }
 
     override fun onCreateViewHolder(
@@ -39,6 +40,9 @@ class ProductsListAdapter(
         position: Int
     ) {
         val currentProduct = products[position]
+        holder.itemView.setOnClickListener {
+            onProductClicked.displayProductDetails(currentProduct)
+        }
         holder.bind(currentProduct)
     }
 
@@ -56,19 +60,6 @@ class ProductsListAdapter(
             productIm = itemView.findViewById(R.id.productIm)
             productCommentsSize = itemView.findViewById(R.id.comments_size_tv)
 
-            itemView.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    val product = products[adapterPosition]
-
-                    val context = itemView.context
-                    val intent =
-                        Intent(context, ProductDetailsActivity::class.java).apply {
-                            putExtra(PRODUCT_ID, product.publicationId.toString())
-                            putExtra(PRODUCT_NAME, product.titre)
-                        }
-                    context.startActivity(intent)
-                }
-            }
         }
 
         fun bind(productData: Data) {
@@ -78,4 +69,9 @@ class ProductsListAdapter(
             productCommentsSize.text = productData.publicationId.toString()
         }
     }
+}
+
+
+interface OnProductClicked {
+    fun displayProductDetails(productData: Data)
 }

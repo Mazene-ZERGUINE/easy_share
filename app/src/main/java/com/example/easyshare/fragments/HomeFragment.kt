@@ -1,5 +1,6 @@
 package com.example.easyshare.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,15 @@ import com.example.easyshare.databinding.FragmentHomeBinding
 import com.example.easyshare.di.injectModuleDependencies
 import com.example.easyshare.di.parseAndInjectConfiguration
 import com.example.easyshare.models.Data
+import com.example.easyshare.view.ProductDetailsActivity
+import com.example.easyshare.view.adapters.OnProductClicked
 import com.example.easyshare.view.adapters.ProductsListAdapter
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
+import com.example.easyshare.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.viewmodel.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnProductClicked {
     private val productViewModel: ProductViewModel by viewModel()
 
     private lateinit var binding: FragmentHomeBinding
@@ -57,8 +62,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpProductsList(products: List<Data>) {
-        val productsAdapter = ProductsListAdapter(products)
+        val productsAdapter = ProductsListAdapter(products, this)
         productsListRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         productsListRv.adapter = productsAdapter
     }
+
+    override fun displayProductDetails(productData: Data) {
+        val intent = Intent(context, ProductDetailsActivity::class.java)
+        intent.putExtra(PRODUCT_ID, productData.publicationId.toString())
+        intent.putExtra(PRODUCT_NAME, productData.titre)
+        startActivity(intent)
+    }
+
 }
