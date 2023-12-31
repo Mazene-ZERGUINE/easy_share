@@ -1,5 +1,6 @@
 package com.example.easyshare.view.adapters
 
+import Utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,13 +29,19 @@ class CommentsAdapter(private val comments: List<Commentaire>) : RecyclerView.Ad
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var commentTv: TextView
+        private var userName : TextView
+        private var publishedAtComment: TextView
 
         init {
             this.commentTv = itemView.findViewById(R.id.comment_tv)
+            this.userName = itemView.findViewById(R.id.user_name_comment_tv)
+            this.publishedAtComment = itemView.findViewById(R.id.publisheAt_comment_tv)
         }
 
-        fun bind(commentaire: Commentaire) {
-            commentTv.text = commentaire.comment
+        fun bind(comment: Commentaire) {
+            commentTv.text = comment.comment
+            userName.text = comment.user.pseudonyme
+            publishedAtComment.text = Utils.calculateTimeDifference(comment.createdAt)
         }
     }
 }
