@@ -92,6 +92,7 @@ class HomeFragment : Fragment(), OnProductClicked {
         val intent = Intent(context, ProductDetailsActivity::class.java)
         intent.putExtra(PRODUCT_ID, productData.publicationId.toString())
         intent.putExtra(PRODUCT_NAME, productData.titre)
+        intent.putExtra(PRODUCT_CREATED_AT, productData.createdAt)
         startActivity(intent)
     }
 
