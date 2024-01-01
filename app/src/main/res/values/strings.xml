@@ -1,4 +1,3 @@
-
 <resources>
     <string name="app_name">easyshare</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -7,4 +6,6 @@
     <string name="created_At">Le : %1$s</string>
     <string name="created_by">Par : %1$s</string>
     <string name="logout">Déconnexion</string>
+    <string name="create_account"><u>Créer votre compte ici.</u></string>
+    <string name="login_account"><u>connectez-vous ici</u></string>
 </resources>
