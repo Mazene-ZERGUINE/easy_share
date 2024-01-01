@@ -83,7 +83,8 @@ class HomeFragment : Fragment() {
                 },
                 onUnstar = { postId ->
                     this.productViewModel.unstarPost(postId)
-                }
+                },
+                this
             )
     }
 }

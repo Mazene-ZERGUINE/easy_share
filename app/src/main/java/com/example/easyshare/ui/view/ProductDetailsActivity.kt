@@ -6,16 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyshare.R
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
+import com.example.easyshare.ui.view.adapters.CommentsAdapter
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
+import com.example.easyshare.ui.viewmodel.CommentViewModel
 import com.example.easyshare.ui.viewmodel.ProductViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductDetailsActivity : AppCompatActivity() {
     private val productViewModel: ProductViewModel by viewModel()
+    private val commentViewModel: CommentViewModel by viewModel()
     private lateinit var binding: ActivityProductDetailsBinding
 
     private lateinit var productId: String
