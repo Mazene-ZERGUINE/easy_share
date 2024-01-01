@@ -2,6 +2,7 @@ package com.example.easyshare.services
 
 import com.example.easyshare.models.AllProductInfo
 import com.example.easyshare.models.ApiResponse
+import com.example.easyshare.models.CommentResponse
 import com.example.easyshare.models.GenericApiResponse
 import com.example.easyshare.models.IsStarredPost
 import com.example.easyshare.models.LoginRequest
@@ -34,6 +35,11 @@ interface ApiService {
     fun isStarredPost(
         @Path("id") id: Int
     ): Observable<GenericApiResponse<IsStarredPost>>
+
+    @GET("commentaires/publications/{publicationId}")
+    fun getAllProductsComments(
+        @Path("publicationId") publicationId: Int
+    ): Flowable<CommentResponse>
 
     @POST("favoris/publications/{id}")
     fun starPost(
