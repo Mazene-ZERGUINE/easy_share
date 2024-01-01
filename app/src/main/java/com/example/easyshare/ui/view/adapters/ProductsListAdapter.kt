@@ -17,12 +17,14 @@ class ProductsListAdapter(
     val products: List<Data>,
     private val isPostStarred: (String) -> Boolean?,
     private val onStar: (Int) -> Unit,
-    private val onUnstar: (Int) -> Unit
+    private val onUnstar: (Int) -> Unit,
+    private val onProductClicked: OnProductClicked
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
     companion object {
-        const val PRODUCT_ID = "com.example.easyshare.fragments.idProduct"
-        const val PRODUCT_NAME = "com.example.easyshare.fragments.title"
-        const val PRODUCT_IMAGE = "com.example.easyshare.fragments.imageUrl"
+        const val PRODUCT_NAME = "product_name"
+        const val PRODUCT_ID = "product_id"
+        const val PRODUCT_CREATED_AT = "product_createdAt"
+        const val PRODUCT_CREATED_BY = "product_createdBy"
     }
 
     override fun onCreateViewHolder(
@@ -45,6 +47,10 @@ class ProductsListAdapter(
     ) {
         val currentProduct = products[position]
 
+        holder.itemView.setOnClickListener {
+            onProductClicked.displayProductDetails(currentProduct)
+        }
+
         holder.bind(currentProduct)
     }
 
@@ -66,19 +72,7 @@ class ProductsListAdapter(
             starButton = itemView.findViewById(R.id.favoriteFab)
             starFillButton = itemView.findViewById(R.id.favoriteFillFab)
 
-            itemView.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    val product = products[adapterPosition]
-                    Log.d("getFakeProducts", product.toString())
-                    val context = itemView.context
-                    val intent =
-                        Intent(context, ProductDetailsActivity::class.java).apply {
-                            putExtra(PRODUCT_ID, product.publicationId.toString())
-                            putExtra(PRODUCT_NAME, product.titre)
-                        }
-                    context.startActivity(intent)
-                }
-            }
+
 
             this.listenToStarButton()
             this.listenToStarFillButton()
@@ -131,4 +125,9 @@ class ProductsListAdapter(
             }
         }
     }
+}
+
+
+interface OnProductClicked {
+    fun displayProductDetails(productData: Data)
 }

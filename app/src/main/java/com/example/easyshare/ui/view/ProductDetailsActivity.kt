@@ -3,8 +3,11 @@ package com.example.easyshare.ui.view
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyshare.R
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.ui.viewmodel.ProductViewModel
@@ -21,6 +24,9 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var starFillButton: FloatingActionButton
     private var isPostStarred = false
 
+    private lateinit var productCreatedAt: String
+    private lateinit var productCreatedBy: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +35,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         getProductInfoFromIntent()
         setProductInfoInView()
+        observeProductComments()
+
+        getMoreComments()
 
         starButton = findViewById(R.id.favorite_action_btn)
         starFillButton = findViewById(R.id.favorite_action_fill_btn)
@@ -55,13 +64,22 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
+
     private fun setProductInfoInView() {
         binding.productDetailTitleTv.text = this.productTitle
+        binding.productDetailCreatedAtTv.text =getString(R.string.created_At,  this.productCreatedAt)
+        binding.productCreatedByTv.text = getString(R.string.created_by, this.productCreatedBy)
     }
 
     private fun getProductInfoFromIntent() {
-        productId = intent.getStringExtra(PRODUCT_ID) ?: ""
         productTitle = intent.getStringExtra(PRODUCT_NAME) ?: ""
+        productId = intent.getStringExtra(PRODUCT_ID) ?: ""
+        productCreatedAt = intent.getStringExtra(PRODUCT_CREATED_AT) ?: ""
+        productCreatedBy = intent.getStringExtra(PRODUCT_CREATED_BY) ?: ""
+
+        productId?.let {
+            this.commentViewModel.loadComments(it.toInt())
+        }
     }
 
     private fun listenToStarButton() {
@@ -95,6 +113,18 @@ class ProductDetailsActivity : AppCompatActivity() {
         } else {
             starButton.visibility = View.VISIBLE
             starFillButton.visibility = View.GONE
+        }
+    }
+
+    private fun observeProductComments() {
+        this.commentViewModel.completeComments.observe(this) { comments ->
+            binding.commentsRv.layoutManager = LinearLayoutManager(this)
+            binding.commentsRv.adapter = CommentsAdapter(comments)
+        }
+    }
+    private fun getMoreComments() {
+        binding.toggleLimitButton.setOnClickListener {
+            commentViewModel.setIsLimitedComments()
         }
     }
 }
