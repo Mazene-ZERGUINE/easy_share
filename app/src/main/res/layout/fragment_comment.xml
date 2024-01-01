@@ -5,7 +5,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:context=".fragments.CommentFragment"
     android:backgroundTint="@color/white_blue"
 >
 
@@ -14,6 +13,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
 	>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -62,7 +62,6 @@
         <ImageButton
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/ic_options"
 			android:backgroundTint="@color/white_blue"
 		/>
 

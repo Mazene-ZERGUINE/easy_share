@@ -1,4 +1,4 @@
-package com.example.easyshare.viewmodel
+package com.example.easyshare.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

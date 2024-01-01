@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Locale
 
-object DateUtils {
+object CustomDateUtils {
 
     fun calculateTimeDifference(pastDateStr: String): String {
         val pastDate = ZonedDateTime.parse(pastDateStr, DateTimeFormatter.ISO_DATE_TIME)

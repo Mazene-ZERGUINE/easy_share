@@ -1,6 +1,7 @@
 package com.example.easyshare.ui.view.adapters
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,18 +15,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListAdapter(
     val products: List<Data>,
-<<<<<<< HEAD:app/src/main/java/com/example/easyshare/ui/view/adapters/ProductsListAdapter.kt
     private val isPostStarred: (String) -> Boolean?,
     private val onStar: (Int) -> Unit,
-    private val onUnstar: (Int) -> Unit
-=======
+    private val onUnstar: (Int) -> Unit,
     private val onProductClicked: OnProductClicked
->>>>>>> df667ba ([productsDetails]: refactor onClickProduct):app/src/main/java/com/example/easyshare/view/adapters/ProductsListAdapter.kt
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductViewHolder>() {
-
     companion object {
         const val PRODUCT_NAME = "product_name"
         const val PRODUCT_ID = "product_id"
+        const val PRODUCT_CREATED_AT = "product_createdAt"
+        const val PRODUCT_CREATED_BY = "product_createdBy"
     }
 
     override fun onCreateViewHolder(
@@ -47,13 +46,11 @@ class ProductsListAdapter(
         position: Int
     ) {
         val currentProduct = products[position]
-<<<<<<< HEAD:app/src/main/java/com/example/easyshare/ui/view/adapters/ProductsListAdapter.kt
 
-=======
         holder.itemView.setOnClickListener {
             onProductClicked.displayProductDetails(currentProduct)
         }
->>>>>>> df667ba ([productsDetails]: refactor onClickProduct):app/src/main/java/com/example/easyshare/view/adapters/ProductsListAdapter.kt
+
         holder.bind(currentProduct)
     }
 
@@ -75,19 +72,7 @@ class ProductsListAdapter(
             starButton = itemView.findViewById(R.id.favoriteFab)
             starFillButton = itemView.findViewById(R.id.favoriteFillFab)
 
-            itemView.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    val product = products[adapterPosition]
 
-                    val context = itemView.context
-                    val intent =
-                        Intent(context, ProductDetailsActivity::class.java).apply {
-                            putExtra(PRODUCT_ID, product.publicationId.toString())
-                            putExtra(PRODUCT_NAME, product.titre)
-                        }
-                    context.startActivity(intent)
-                }
-            }
 
             this.listenToStarButton()
             this.listenToStarFillButton()
@@ -138,7 +123,6 @@ class ProductsListAdapter(
                 starButton.visibility = View.VISIBLE
                 starFillButton.visibility = View.GONE
             }
-            productCommentsSize.text = productData.publicationId.toString()
         }
     }
 }

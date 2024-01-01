@@ -12,8 +12,15 @@ import com.example.easyshare.databinding.FragmentHomeBinding
 import com.example.easyshare.di.injectModuleDependencies
 import com.example.easyshare.di.parseAndInjectConfiguration
 import com.example.easyshare.models.Data
+import com.example.easyshare.ui.view.ProductDetailsActivity
+import com.example.easyshare.ui.view.adapters.OnProductClicked
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.ui.viewmodel.ProductViewModel
+import com.example.easyshare.utilis.CustomDateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), OnProductClicked {
@@ -84,17 +91,18 @@ class HomeFragment : Fragment(), OnProductClicked {
                 },
                 onUnstar = { postId ->
                     this.productViewModel.unstarPost(postId)
-                }
+                },
+                this
             )
     }
+
 
     override fun displayProductDetails(productData: Data) {
         val intent = Intent(context, ProductDetailsActivity::class.java)
         intent.putExtra(PRODUCT_ID, productData.publicationId.toString())
         intent.putExtra(PRODUCT_NAME, productData.titre)
-        intent.putExtra(PRODUCT_CREATED_AT, DateUtils.formatReadableDate(productData.createdAt))
+        intent.putExtra(PRODUCT_CREATED_AT, CustomDateUtils.formatReadableDate(productData.createdAt))
         intent.putExtra(PRODUCT_CREATED_BY, productData.utilisateur.pseudonyme)
         startActivity(intent)
     }
-
 }

@@ -6,10 +6,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bgcolor">#0099ff</color>
     <color name="background_gradient">#DDE5EF</color>
-    <color name="profile_bg">#e3e1dc</color>
     <color name="white_blue">#fff8f9fa</color>
-
+    <color name="profile_bg">#e3e1dc</color>
+    <color name="suggest_text_color">#A4B8D0</color>
     #0099ff
 
-    <color name="suggest_text_color">#A4B8D0</color>
+
 </resources>

@@ -1,168 +1,149 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/details_root"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".ui.view.ProductDetailsActivity"
-    android:background="@color/white_blue"
->
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/details_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.view.ProductDetailsActivity"
+  android:background="@color/white_blue"
+  >
 
-        <com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/appbar"
-		android:layout_width="match_parent"
-		android:layout_height="350dp"
-	>
+    <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appbar"
+      android:layout_width="match_parent"
+      android:layout_height="350dp"
+      >
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-			android:id="@+id/collapsing_toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-		>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+          android:id="@+id/collapsing_toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+          >
 
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 
 
     <androidx.core.widget.NestedScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@drawable/product_detail_rect"
-        android:backgroundTint="@color/white_blue"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-	>
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/product_detail_rect"
+      android:backgroundTint="@color/white_blue"
+      app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+      >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-            android:background="@color/white_blue"
-		>
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/white_blue"
+          >
 
             <View
-				android:layout_width="70dp"
-				android:layout_height="5dp"
-				android:layout_marginBottom="10dp"
-				android:background="@drawable/rounded_rect"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-			/>
+              android:layout_width="70dp"
+              android:layout_height="5dp"
+              android:layout_marginBottom="10dp"
+              android:background="@drawable/rounded_rect"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              />
 
             <LinearLayout
-				android:id="@+id/product_info"
-				android:layout_width="match_parent"
-				android:layout_height="70dp"
-				android:gravity="center_vertical"
-				android:orientation="horizontal"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-			>
+              android:id="@+id/product_info"
+              android:layout_width="match_parent"
+              android:layout_height="70dp"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              >
 
 
                 <TextView
-					android:id="@+id/product_detail_title_tv"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="15dp"
-					android:layout_weight="1"
-					android:text="Ttile of te product"
-					android:textSize="24sp"
-					android:textStyle="bold"
-				/>
+                  android:id="@+id/product_detail_title_tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="15dp"
+                  android:layout_weight="1"
+                  android:text="Ttile of te product"
+                  android:textSize="24sp"
+                  android:textStyle="bold"
+                  />
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/favorite_action_btn"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginEnd="15dp"
-					android:clickable="true"
-					android:contentDescription="add to favorite"
-					android:src="@drawable/ic_favorite"
-				/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/favorite_action_fill_btn"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginEnd="15dp"
-					android:clickable="true"
-					android:contentDescription="remove_from favorite"
-					android:src="@drawable/ic_favorite_fill"
-				/>
-=======
-=======
->>>>>>> a53e9f8a48296bf4a0deda3fe8f0d51ebc5d5f74
+                  android:id="@+id/favorite_action_btn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginEnd="15dp"
+                  android:clickable="true"
+                  android:contentDescription="add to favorite"
+                  android:src="@drawable/ic_favorite"
+                  />
 
->>>>>>> e48259c ([testcommit]: test)
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                  android:id="@+id/favorite_action_fill_btn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginEnd="15dp"
+                  android:clickable="true"
+                  android:contentDescription="remove_from favorite"
+                  android:src="@drawable/ic_favorite_fill"
+                  />
 
             </LinearLayout>
 
 
             <LinearLayout
-				android:id="@+id/likes_comments"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/product_info"
-			>
+              android:id="@+id/likes_comments"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/product_info"
+              >
 
                 <ImageButton
-					android:layout_width="wrap_content"
-					android:layout_height="48dp"
-					android:backgroundTint="@color/white_blue"
-					android:contentDescription="comment"
-					android:src="@drawable/ic_comment"
-				/>
+                  android:layout_width="wrap_content"
+                  android:layout_height="48dp"
+                  android:backgroundTint="@color/white_blue"
+                  android:contentDescription="comment"
+                  android:src="@drawable/ic_comment"
+                  />
 
                 <TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="256"
-				/>
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="256"
+                  />
 
 
                 <ImageButton
-					android:layout_width="wrap_content"
-					android:layout_height="48dp"
-					android:backgroundTint="@color/white_blue"
-					android:contentDescription="like"
-					android:src="@drawable/ic_like"
-				/>
+                  android:layout_width="wrap_content"
+                  android:layout_height="48dp"
+                  android:backgroundTint="@color/white_blue"
+                  android:contentDescription="like"
+                  android:src="@drawable/ic_like"
+                  />
 
                 <TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="150"
-				/>
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="150"
+                  />
 
             </LinearLayout>
 
 
             <LinearLayout
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-				android:id="@+id/product_detail_info"
->>>>>>> e48259c ([testcommit]: test)
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="15dp"
-				android:orientation="vertical"
-				app:layout_constraintTop_toBottomOf="@id/likes_comments"
-			>
-=======
-=======
->>>>>>> a53e9f8a48296bf4a0deda3fe8f0d51ebc5d5f74
               android:id="@+id/product_detail_info"
               android:layout_width="match_parent"
               android:padding="15dp"
@@ -170,10 +151,6 @@
               android:orientation="vertical"
               app:layout_constraintTop_toBottomOf="@id/likes_comments"
               >
-<<<<<<< HEAD
->>>>>>> 01ed492 ([comments]: fixing design)
-=======
->>>>>>> a53e9f8a48296bf4a0deda3fe8f0d51ebc5d5f74
 
                 <TextView
                   android:id="@+id/product_createdBy_tv"
@@ -228,19 +205,19 @@
 
 
             <androidx.cardview.widget.CardView
-				android:id="@+id/comments_section"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginHorizontal="15dp"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="#F8F9FA"
-				app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
-			>
+              android:id="@+id/comments_section"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginHorizontal="15dp"
+              app:cardCornerRadius="10dp"
+              android:backgroundTint="#F8F9FA"
+              app:layout_constraintTop_toBottomOf="@+id/product_detail_info"
+              >
                 <LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical"
-				>
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  >
                     <com.google.android.material.button.MaterialButton
 
                       android:id="@+id/toggleLimitButton"
@@ -253,16 +230,16 @@
                       android:textAllCaps="false"
                       android:layout_marginTop="10dp"
                       android:layout_marginStart="15dp"
-                       />
+                      />
 
                     <androidx.recyclerview.widget.RecyclerView
-						android:id="@+id/comments_rv"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						tools:listitem="@layout/fragment_comment"
-						tools:itemCount="1"
-                        android:padding="15dp"
-					/>
+                      android:id="@+id/comments_rv"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      tools:listitem="@layout/fragment_comment"
+                      tools:itemCount="1"
+                      android:padding="15dp"
+                      />
 
                     <EditText
                       android:id="@+id/editTextMultiLine"
@@ -313,3 +290,5 @@
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
