@@ -5,6 +5,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".ui.fragments.HomeFragment"
+	android:paddingHorizontal="15dp"
+	android:background="@drawable/gradiant_background"
 >
 
 
@@ -34,8 +36,8 @@
 			android:id="@+id/products_rv"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			tools:listitem="@layout/fragment_product"
 			tools:itemCount="3"
+			tools:listitem="@layout/fragment_product"
 		/>
     </LinearLayout>
 

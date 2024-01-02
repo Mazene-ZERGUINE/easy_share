@@ -13,11 +13,12 @@
     <TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="68dp"
+		android:layout_marginBottom="20dp"
 		android:text="Connectez vous à votre compte"
-		android:textAlignment="center"
 		android:textColor="@color/white"
-		android:textSize="30dp"
+		android:lineHeight="40dp"
+		android:textSize="30sp"
+		android:paddingHorizontal="20dp"
 		app:layout_constraintBottom_toTopOf="@+id/emailLayout"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
@@ -30,15 +31,14 @@
 		android:id="@+id/emailLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		app:hintTextColor="@color/white"
+		android:textColorHint="@color/white"
 		android:layout_marginHorizontal="16dp"
 		android:layout_marginTop="232dp"
 		app:boxBackgroundMode="none"
-		app:hintTextColor="@color/white"
-		app:boxStrokeWidth="0dp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 	>
 
         <com.google.android.material.textfield.TextInputEditText
@@ -46,7 +46,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="Adress email"
-			android:textColorHint="@color/white"
+			android:textSize="20dp"
+			android:textColor="@color/white"
+			android:paddingStart="0dp"
 			android:inputType="textEmailAddress"
 		/>
 
@@ -54,11 +56,10 @@
 
     <View
 		android:layout_width="match_parent"
-		android:layout_height="3dp"
+		android:layout_height="2dp"
 		android:layout_below="@id/emailLayout"
-		android:background="@android:color/white"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp"
+		android:background="@color/white_50"
+		android:layout_marginHorizontal="20dp"
 		app:layout_constraintBottom_toBottomOf="@+id/emailLayout"
 	/>
 
@@ -66,17 +67,19 @@
 		android:id="@+id/passwordLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginHorizontal="16dp"
+		android:layout_marginHorizontal="20dp"
 		app:boxBackgroundMode="none"
 		android:background="@drawable/bottom_border_background"
 		android:layout_marginTop="24dp"
-		app:boxStrokeColor="@android:color/white"
+		android:textColorHint="@color/white"
 		app:hintTextColor="@android:color/white"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.5"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/emailLayout"
 		app:passwordToggleEnabled="true"
+		app:passwordToggleDrawable="@drawable/show_password_selector"
+		app:passwordToggleTint="@color/white"
 	>
 
         <com.google.android.material.textfield.TextInputEditText
@@ -84,17 +87,20 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="Mot de pass"
+			android:textSize="20dp"
+			android:textColor="@color/white"
+			android:paddingStart="0dp"
 			android:inputType="textPassword"
 		/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
 		android:layout_width="match_parent"
-		android:layout_height="3dp"
+		android:layout_height="2dp"
+		android:textSize="20dp"
 		android:layout_below="@id/emailLayout"
-		android:background="@android:color/white"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp"
+		android:background="@color/white_50"
+		android:layout_marginHorizontal="20dp"
 		app:layout_constraintBottom_toBottomOf="@+id/passwordLayout"
 	/>
 
@@ -102,11 +108,10 @@
 		android:id="@+id/button"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_marginHorizontal="16dp"
+		android:layout_marginHorizontal="20dp"
 		android:background="@drawable/connexion_btn"
 		android:text="Connexion"
 		android:textColor="@android:color/white"
-		android:textStyle="bold"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -114,18 +119,31 @@
 		app:layout_constraintVertical_bias="0.23"
 	/>
 
-    <TextView
-		android:id="@+id/textView"
-		android:layout_width="wrap_content"
+    <LinearLayout
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Pas de compte ? Créer votre compte ici."
-		android:textColor="@android:color/white"
+		android:gravity="center_horizontal"
+		android:layout_marginTop="5dp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/button"
-		app:layout_constraintVertical_bias="0.106"
-	/>
+		app:layout_constraintVertical_bias="0.0"
+	>
+        <TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Pas de compte ? "
+			android:textColor="@android:color/white"
+		/>
+        <TextView
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/create_account"
+			android:textColor="@android:color/white"
+		/>
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

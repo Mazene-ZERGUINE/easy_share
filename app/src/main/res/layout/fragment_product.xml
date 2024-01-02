@@ -4,12 +4,14 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/productCard"
-	android:layout_width="match_parent"
-	android:layout_height="330dp"
-	android:layout_margin="15dp"
-	android:padding="10dp"
-	app:cardCornerRadius="10dp"
-	android:elevation="1dp"
+	android:layout_width="347dp"
+	android:layout_height="382dp"
+	app:cardCornerRadius="20dp"
+	android:elevation="30dp"
+	app:cardElevation="0dp"
+	android:backgroundTint="@color/white_50"
+	app:background="@color/white_50"
+	android:layout_marginEnd="10dp"
 >
     <LinearLayout
 		android:layout_width="match_parent"
@@ -22,7 +24,7 @@
         <ImageView
 			android:id="@+id/productIm"
 			android:layout_width="match_parent"
-			android:layout_height="130dp"
+			android:layout_height="200dp"
 			android:contentDescription="product image"
 			android:scaleType="centerCrop"
 			android:src="@drawable/ic_user_profile"
@@ -32,7 +34,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:orientation="vertical"
-			android:padding="10dp"
+			android:padding="15dp"
 		>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,12 +45,12 @@
 
                 <TextView
 					android:id="@+id/productTitleTv"
-					android:layout_width="wrap_content"
+					android:layout_width="252dp"
 					android:layout_height="wrap_content"
 					android:ellipsize="marquee"
 					android:maxLines="1"
 					android:text="Perforeuse béton Perforeuse bétonPerforeuse bétonPerforeuse bétonPerforeuse béton"
-					android:textSize="30sp"
+					android:textSize="24sp"
 					android:textStyle="bold"
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +61,8 @@
 					android:id="@+id/favoriteFab"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:backgroundTint="@color/white"
 					android:clickable="true"
+					app:pressedTranslationZ="0dp"
 					android:contentDescription="favorite"
 					android:src="@drawable/ic_favorite"
 					app:elevation="0dp"
@@ -72,8 +74,8 @@
 					android:id="@+id/favoriteFillFab"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:backgroundTint="@color/white"
 					android:clickable="true"
+					app:pressedTranslationZ="0dp"
 					android:contentDescription="favorite"
 					android:src="@drawable/ic_favorite_fill"
 					app:elevation="0dp"
@@ -123,7 +125,7 @@
 
             <LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="48dp"
+				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:layout_marginTop="10dp"
 			>
@@ -133,12 +135,13 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:gravity="center_vertical"
+					android:layout_marginEnd="30dp"
 				>
 
                     <ImageButton
 						android:layout_width="wrap_content"
-						android:layout_height="48dp"
-						android:backgroundTint="@color/white"
+						android:layout_height="wrap_content"
+						android:background="@null"
 						android:src="@drawable/ic_comment"
 						android:contentDescription="comment"
 					/>
@@ -163,8 +166,8 @@
 
                     <ImageButton
 						android:layout_width="wrap_content"
-						android:layout_height="48dp"
-						android:backgroundTint="@color/white"
+						android:layout_height="wrap_content"
+						android:background="@null"
 						android:src="@drawable/ic_like"
 						android:contentDescription="like"
 					/>
