@@ -1,7 +1,5 @@
 package com.example.easyshare.ui.view.adapters
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
 import com.example.easyshare.models.Data
-import com.example.easyshare.ui.view.ProductDetailsActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListAdapter(
@@ -72,8 +69,6 @@ class ProductsListAdapter(
             starButton = itemView.findViewById(R.id.favoriteFab)
             starFillButton = itemView.findViewById(R.id.favoriteFillFab)
 
-
-
             this.listenToStarButton()
             this.listenToStarFillButton()
         }
@@ -126,7 +121,6 @@ class ProductsListAdapter(
         }
     }
 }
-
 
 interface OnProductClicked {
     fun displayProductDetails(productData: Data)
