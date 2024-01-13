@@ -6,7 +6,6 @@ import java.time.temporal.ChronoUnit
 import java.util.Locale
 
 object CustomDateUtils {
-
     fun calculateTimeDifference(pastDateStr: String): String {
         val pastDate = ZonedDateTime.parse(pastDateStr, DateTimeFormatter.ISO_DATE_TIME)
         val currentTime = ZonedDateTime.now(pastDate.zone)
@@ -20,10 +19,10 @@ object CustomDateUtils {
         val hours = totalHours % 24
 
         return when {
-            years > 0 -> "Il y'a ${years} année${if (years > 1) "s" else ""}"
-            weeks > 0 -> "Il y'a ${weeks} semaine${if (weeks > 1) "s" else ""}"
+            years > 0 -> "Il y'a $years année${if (years > 1) "s" else ""}"
+            weeks > 0 -> "Il y'a $weeks semaine${if (weeks > 1) "s" else ""}"
             days > 0 -> {
-                val dayString = "Il y'a ${days} jour${if (days > 1) "s" else ""}"
+                val dayString = "Il y'a $days jour${if (days > 1) "s" else ""}"
                 if (hours > 0) "$dayString et ${hours}h" else dayString
             }
             else -> "Il y'a ${hours}h"

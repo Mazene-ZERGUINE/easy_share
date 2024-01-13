@@ -67,10 +67,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setProductInfoInView() {
         binding.productDetailTitleTv.text = this.productTitle
-        binding.productDetailCreatedAtTv.text =getString(R.string.created_At,  this.productCreatedAt)
+        binding.productDetailCreatedAtTv.text = getString(R.string.created_At, this.productCreatedAt)
         binding.productCreatedByTv.text = getString(R.string.created_by, this.productCreatedBy)
     }
 
@@ -125,6 +124,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.commentsRv.adapter = CommentsAdapter(comments)
         }
     }
+
     private fun getMoreComments() {
         binding.toggleLimitButton.setOnClickListener {
             commentViewModel.setIsLimitedComments()

@@ -96,7 +96,6 @@ class HomeFragment : Fragment(), OnProductClicked {
             )
     }
 
-
     override fun displayProductDetails(productData: Data) {
         val intent = Intent(context, ProductDetailsActivity::class.java)
         intent.putExtra(PRODUCT_ID, productData.publicationId.toString())

@@ -55,8 +55,7 @@ class CommentViewModel(private val productsRepository: ProductsRepository) : Vie
         }).addTo(disposBag)
     }
 
-
-    fun setIsLimitedComments(){
+    fun setIsLimitedComments() {
         this.isLimitEnabled.onNext(true)
     }
 }
