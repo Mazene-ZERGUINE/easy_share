@@ -42,8 +42,7 @@ class MainActivity : AppCompatActivity() {
                     this.onNavigationItemClick(navController, R.id.favoriteFragment)
                 }
                 R.id.add -> {
-                    // TODO
-                    true
+                    this.onNavigationItemClick(navController, R.id.addProductFragment)
                 }
                 R.id.accountFragment -> {
                     this.onNavigationItemClick(navController, R.id.accountFragment)
