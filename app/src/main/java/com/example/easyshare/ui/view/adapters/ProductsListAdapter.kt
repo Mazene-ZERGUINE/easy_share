@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.R
 import com.example.easyshare.models.Data
+import com.example.easyshare.utilis.CustomDateUtils
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListAdapter(
@@ -75,9 +76,9 @@ class ProductsListAdapter(
 
         fun bind(productData: Data) {
             productTitleTv.text = productData.titre
-            publishedAtTv.text = productData.createdAt
+            publishedAtTv.text = CustomDateUtils.calculateTimeDifference(productData.createdAt)
             profileNameTv.text = productData.utilisateur.pseudonyme
-            productCommentsSize.text = productData.comments[0].comment
+            productCommentsSize.text = productData.comments.count().toString()
 
             if (adapterPosition != RecyclerView.NO_POSITION) {
                 this.setStarAndStarFillButtonVisibility()

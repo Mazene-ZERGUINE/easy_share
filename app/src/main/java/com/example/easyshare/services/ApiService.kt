@@ -7,6 +7,7 @@ import com.example.easyshare.models.GenericApiResponse
 import com.example.easyshare.models.IsStarredPost
 import com.example.easyshare.models.LoginRequest
 import com.example.easyshare.models.LoginResponse
+import com.example.easyshare.models.NewProductRequest
 import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.models.SignupRequest
 import com.example.easyshare.models.SignupResponse
@@ -24,6 +25,11 @@ import retrofit2.http.Path
 interface ApiService {
     @GET("publications")
     fun getProducts(): Single<AllProductInfo>
+
+    @POST("publications")
+    fun addNewProduct(
+        @Body request: NewProductRequest
+    ): Flowable<Unit>
 
     @POST("auth/log-in")
     fun userLogin(
