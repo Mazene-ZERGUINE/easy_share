@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.easyshare.models.Data
+import com.example.easyshare.models.NewProductRequest
 import com.example.easyshare.repositories.ProductsRepository
 import com.example.easyshare.repositories.UserRepository
+import com.example.easyshare.utilis.TokenManager
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
@@ -83,7 +85,6 @@ class ProductViewModel(
             .doOnSubscribe { this.isLoading.postValue(true) }
             .flatMapObservable { response ->
                 this.productData.onNext(response.data)
-
                 Observable.fromIterable(response.data)
                     .flatMap { data ->
                         getIsPostStarred(data.publicationId).map { isStarred ->
@@ -120,5 +121,19 @@ class ProductViewModel(
                 Log.d("getProduct", it.toString())
                 this.completeProductData.postValue(it)
             }.addTo(disposBag)
+    }
+
+    fun addNewProduct(
+        title: String,
+        description: String
+    ) {
+        Log.d("titre du produit", title)
+
+        val newProductPayload =
+            TokenManager.getUserIdFromToken()?.let { NewProductRequest(title, description, it) }
+
+        if (newProductPayload != null) {
+            productRepository.addProduct(newProductPayload).subscribe()
+        }
     }
 }

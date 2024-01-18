@@ -10,7 +10,7 @@ data class Data(
     @SerializedName("created_at")
     val createdAt: String,
     val description: String,
-    val images: List<String>,
+    val images: List<PublicationImage>,
     @SerializedName("publication_favoris")
     val favoriteProducts: List<Any>,
     val status: String,

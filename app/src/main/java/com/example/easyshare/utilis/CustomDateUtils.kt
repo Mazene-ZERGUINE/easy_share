@@ -25,6 +25,9 @@ object CustomDateUtils {
                 val dayString = "Il y'a $days jour${if (days > 1) "s" else ""}"
                 if (hours > 0) "$dayString et ${hours}h" else dayString
             }
+            hours < 1 -> {
+                "il y'a moins d'une heure"
+            }
             else -> "Il y'a ${hours}h"
         }
     }

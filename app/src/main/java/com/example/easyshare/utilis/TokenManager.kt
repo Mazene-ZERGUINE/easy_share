@@ -7,6 +7,7 @@ import org.json.JSONObject
 
 object TokenManager {
     private var pseudonymeFromToken = ""
+    private lateinit var userIdFromToken: String
     private var userToken: String? = null
 
     fun setToken(token: String) {
@@ -27,7 +28,7 @@ object TokenManager {
      * @param token The token to decode.
      * @return The decoded token.
      */
-    fun decodeToken(token: String?): JSONObject {
+    private fun decodeToken(token: String?): JSONObject {
         if (token == null) {
             throw IllegalArgumentException("Token is null.")
         }
@@ -49,16 +50,21 @@ object TokenManager {
         return pseudonymeFromToken
     }
 
-    fun setPseudonymeFromToken() {
+    fun setPseudoAndUserIdFromToken() {
         val token = this.getToken() ?: return
         var jsonObject: JSONObject? = null
 
         try {
             jsonObject = this.decodeToken(token)
             pseudonymeFromToken = jsonObject.getString("pseudonyme") ?: ""
+            userIdFromToken = jsonObject.getString("utilisateur_id") ?: ""
         } catch (e: Exception) {
             Log.d("decodeToken", "Error while decoding token.")
         }
+    }
+
+    fun getUserIdFromToken(): Int {
+        return userIdFromToken.toInt()
     }
 
     fun storeAccessToken(
