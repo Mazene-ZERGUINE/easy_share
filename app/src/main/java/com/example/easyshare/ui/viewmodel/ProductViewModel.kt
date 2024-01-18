@@ -7,6 +7,7 @@ import com.example.easyshare.models.Data
 import com.example.easyshare.models.NewProductRequest
 import com.example.easyshare.repositories.ProductsRepository
 import com.example.easyshare.repositories.UserRepository
+import com.example.easyshare.utilis.TokenManager
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
@@ -125,11 +126,14 @@ class ProductViewModel(
     fun addNewProduct(
         title: String,
         description: String
-    )  {
+    ) {
         Log.d("titre du produit", title)
 
-        val newProductPayload = NewProductRequest(title, description)
+        val newProductPayload =
+            TokenManager.getUserIdFromToken()?.let { NewProductRequest(title, description, it) }
 
-        productRepository.addProduct(newProductPayload).subscribe()
+        if (newProductPayload != null) {
+            productRepository.addProduct(newProductPayload).subscribe()
+        }
     }
 }

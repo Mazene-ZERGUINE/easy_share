@@ -29,7 +29,7 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
             .subscribe(
                 { response ->
                     _loginResult.postValue(response)
-                    TokenManager.setPseudonymeFromToken()
+                    TokenManager.getPseudonymeFromToken()
                 },
                 { error -> _loginError.postValue(error.message) }
             ).addTo(disposBag)

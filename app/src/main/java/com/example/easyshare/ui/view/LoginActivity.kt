@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this) { loginResponse ->
             val token: String = loginResponse.getToken()
             TokenManager.setToken(token)
-            TokenManager.setPseudonymeFromToken()
+            TokenManager.setPseudoAndUserIdFromToken()
 
             Utils.displayToast(
                 applicationContext,
