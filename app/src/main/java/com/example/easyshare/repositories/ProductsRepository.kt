@@ -17,7 +17,7 @@ class ProductsRepository(private val productDataService: ApiService) {
         return productDataService.getAllProductsComments(publicationId)
     }
 
-    fun addProduct(payload: NewProductRequest): Flowable<Unit>  {
+    fun addProduct(payload: NewProductRequest): Flowable<Unit> {
         Log.d("payLoad", payload.toString())
         return productDataService.addNewProduct(payload)
     }

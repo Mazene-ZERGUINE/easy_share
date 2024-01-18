@@ -36,7 +36,7 @@ class AddProductFragment : Fragment() {
         return binding.root
     }
 
-    private fun addNewProduct()  {
+    private fun addNewProduct() {
         val productTitle = this.binding.titleProductInput.text.toString()
         val productDescription = this.binding.descriptionProductInput.text.toString()
 
