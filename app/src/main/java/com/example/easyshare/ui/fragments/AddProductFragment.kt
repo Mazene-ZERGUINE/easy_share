@@ -1,15 +1,14 @@
 package com.example.easyshare.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.easyshare.R
 import com.example.easyshare.databinding.FragmentAddProductBinding
-import com.example.easyshare.ui.view.MainActivity
 import com.example.easyshare.ui.viewmodel.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,8 +41,8 @@ class AddProductFragment : Fragment() {
 
         if (productTitle.isNotEmpty() && productDescription.isNotEmpty()) {
             productViewModel.addNewProduct(productTitle, productDescription)
-            val intent = Intent(this.requireActivity(), MainActivity::class.java)
-            startActivity(intent)
+
+            findNavController().popBackStack()
         } else {
             Utils.displayToast(requireContext(), R.layout.error_toast, "Merci de remplire tous les champs!", Toast.LENGTH_SHORT)
         }

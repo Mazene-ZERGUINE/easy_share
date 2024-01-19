@@ -127,13 +127,9 @@ class ProductViewModel(
         title: String,
         description: String
     ) {
-        Log.d("titre du produit", title)
-
         val newProductPayload =
-            TokenManager.getUserIdFromToken()?.let { NewProductRequest(title, description, it) }
+            NewProductRequest(title, description, TokenManager.getUserIdFromToken())
 
-        if (newProductPayload != null) {
-            productRepository.addProduct(newProductPayload).subscribe()
-        }
+        productRepository.addProduct(newProductPayload).subscribe()
     }
 }

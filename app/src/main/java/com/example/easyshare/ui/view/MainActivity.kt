@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun onLogOut(navController: NavController): Boolean {
         TokenManager.clearToken()
-        navController.navigate(R.id.loginActivity)
+        // navController.navigate(R.id.loginActivity)
         finish()
 
         return true

@@ -13,6 +13,7 @@ import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.ui.view.ProductDetailsActivity
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
+import com.example.easyshare.utilis.CustomDateUtils
 import com.example.easyshare.utilis.TokenManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -27,7 +28,7 @@ class FavoritePostsAdapter(
         val favoritePostView =
             LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.fragment_favorite_posts, parent, false)
+                .inflate(R.layout.fragment_product, parent, false)
 
         return FavoritePostsViewHolder(favoritePostView)
     }
@@ -54,15 +55,15 @@ class FavoritePostsAdapter(
             publishedAtTv = itemView.findViewById(R.id.productPublishedAt)
             profileNameTv = itemView.findViewById(R.id.profileNameTv)
             productIm = itemView.findViewById(R.id.productIm)
-            starButton = itemView.findViewById(R.id.favoriteFab)
+            starButton = itemView.findViewById(R.id.favoriteFillFab)
 
             this.listenToItemView(itemView)
             this.listenToStarButton()
         }
 
         fun bind(currentFavoritePost: PublicationFavori) {
-            productTitleTv.text = currentFavoritePost?.publication?.titre
-            publishedAtTv.text = currentFavoritePost?.publication?.createdAt
+            productTitleTv.text = currentFavoritePost.publication.titre
+            publishedAtTv.text = CustomDateUtils.calculateTimeDifference(currentFavoritePost.publication.createdAt)
             profileNameTv.text = TokenManager.getPseudonymeFromToken()
         }
 
