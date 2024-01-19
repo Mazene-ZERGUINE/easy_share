@@ -26,7 +26,7 @@ class ProductsRepository(private val productDataService: ApiService) {
     fun addComment(
         publicationId: Int,
         payload: CommentRequest
-    ): Flowable<Unit>  {
+    ): Flowable<Unit> {
         return productDataService.addCommentToProduct(publicationId, payload)
     }
 }

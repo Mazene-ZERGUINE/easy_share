@@ -141,7 +141,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun addProductComment()  {
+    private fun addProductComment() {
         val comment = binding.addCommentInput.text.toString()
 
         if (comment.isNotEmpty()) {
