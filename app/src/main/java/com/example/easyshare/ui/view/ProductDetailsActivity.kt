@@ -2,6 +2,7 @@ package com.example.easyshare.ui.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyshare.R
@@ -41,11 +42,13 @@ class ProductDetailsActivity : AppCompatActivity() {
         observeProductComments()
 
         getMoreComments()
+        publishComment()
 
         starButton = findViewById(R.id.favorite_action_btn)
         starFillButton = findViewById(R.id.favorite_action_fill_btn)
 
         this.observeIsPostStarredData()
+        observeIsCommentsLoading()
 
         this.setStarAndStarFillButtonVisibility()
         this.listenToStarButton()
@@ -128,6 +131,30 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun getMoreComments() {
         binding.toggleLimitButton.setOnClickListener {
             commentViewModel.setIsLimitedComments()
+        }
+    }
+
+    private fun publishComment() {
+        binding.publishCommentBtn.setOnClickListener {
+            this.addProductComment()
+            binding.addCommentInput.text.clear()
+        }
+    }
+
+    private fun addProductComment()  {
+        val comment = binding.addCommentInput.text.toString()
+
+        if (comment.isNotEmpty()) {
+            commentViewModel.addComment(productId.toInt(), comment)
+        } else {
+            Utils.displayToast(applicationContext, R.layout.error_toast, "Veuillez mettre un commentaire ! ", Toast.LENGTH_SHORT)
+        }
+    }
+
+    private fun observeIsCommentsLoading() {
+        this.commentViewModel.isLoading.observe(this) { isCommentsLoading ->
+            binding.commentProgressBar.visibility = if (isCommentsLoading) View.VISIBLE else View.GONE
+            binding.commentsRv.visibility = if (isCommentsLoading) View.GONE else View.VISIBLE
         }
     }
 }

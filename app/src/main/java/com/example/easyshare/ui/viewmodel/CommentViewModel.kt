@@ -3,8 +3,11 @@ package com.example.easyshare.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.easyshare.models.CommentRequest
 import com.example.easyshare.models.Commentaire
 import com.example.easyshare.repositories.ProductsRepository
+import com.example.easyshare.utilis.TokenManager
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.functions.BiFunction
@@ -21,6 +24,8 @@ class CommentViewModel(private val productsRepository: ProductsRepository) : Vie
 
     val completeComments: MutableLiveData<List<Commentaire>> = MutableLiveData()
 
+    val isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
+
     fun loadComments(productId: Int) {
         getAllComments(productId)
     }
@@ -28,6 +33,8 @@ class CommentViewModel(private val productsRepository: ProductsRepository) : Vie
     private fun getComments(publicationId: Int) {
         productsRepository.getAllProductComments(publicationId)
             .observeOn(Schedulers.io())
+            .doOnSubscribe { this.isLoading.postValue(true) }
+            .doFinally { this.isLoading.postValue(false) }
             .subscribe(
                 {
                     this.productComments.onNext(it.data.rows)
@@ -57,5 +64,22 @@ class CommentViewModel(private val productsRepository: ProductsRepository) : Vie
 
     fun setIsLimitedComments() {
         this.isLimitEnabled.onNext(true)
+    }
+
+    fun addComment(
+        productId: Int,
+        comment: String
+    ) {
+        val newComment = CommentRequest(comment, productId, TokenManager.getUserIdFromToken())
+
+        productsRepository.addComment(productId, newComment)
+            .observeOn(Schedulers.io())
+            .doOnSubscribe { this.isLoading.postValue(true) }
+            .flatMapCompletable {
+                loadComments(productId)
+                Completable.complete()
+            }
+            .subscribe()
+            .addTo(disposBag)
     }
 }

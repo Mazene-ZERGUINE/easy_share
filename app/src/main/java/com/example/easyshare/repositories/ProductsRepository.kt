@@ -2,6 +2,7 @@ package com.example.easyshare.repositories
 
 import android.util.Log
 import com.example.easyshare.models.AllProductInfo
+import com.example.easyshare.models.CommentRequest
 import com.example.easyshare.models.CommentResponse
 import com.example.easyshare.models.NewProductRequest
 import com.example.easyshare.services.ApiService
@@ -20,5 +21,12 @@ class ProductsRepository(private val productDataService: ApiService) {
     fun addProduct(payload: NewProductRequest): Flowable<Unit> {
         Log.d("payLoad", payload.toString())
         return productDataService.addNewProduct(payload)
+    }
+
+    fun addComment(
+        publicationId: Int,
+        payload: CommentRequest
+    ): Flowable<Unit>  {
+        return productDataService.addCommentToProduct(publicationId, payload)
     }
 }
