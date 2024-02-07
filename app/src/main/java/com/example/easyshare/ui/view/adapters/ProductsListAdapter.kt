@@ -23,6 +23,8 @@ class ProductsListAdapter(
         const val PRODUCT_ID = "product_id"
         const val PRODUCT_CREATED_AT = "product_createdAt"
         const val PRODUCT_CREATED_BY = "product_createdBy"
+        const val PRODUCT_DESCRIPTION = "product_description"
+        const val PRODUCT_COMMENTS_SIZE = "product_comments_size"
     }
 
     override fun onCreateViewHolder(

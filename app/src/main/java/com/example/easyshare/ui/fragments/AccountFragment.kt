@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -26,11 +25,14 @@ class AccountFragment : Fragment() {
     private val pseudonyme: String = TokenManager.getPseudonymeFromToken()
     private lateinit var userNameTv: TextView
     private lateinit var emailTv: TextView
-    private lateinit var nameInput: EditText
-    private lateinit var lastNameInput: EditText
-    private lateinit var emailInput: EditText
-    private lateinit var userNameInput: EditText
-    private lateinit var passwordInput: EditText
+    private lateinit var firstLetterName: TextView
+    private lateinit var arobaseId: TextView
+
+    // private lateinit var nameInput: EditText
+    // private lateinit var lastNameInput: EditText
+    // private lateinit var emailInput: EditText
+    // private lateinit var userNameInput: EditText
+    // private lateinit var passwordInput: EditText
     private lateinit var editButton: Button
     private lateinit var deleteButton: ImageView
     private var userId: Int? = null
@@ -44,25 +46,27 @@ class AccountFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_account, container, false)
         userNameTv = rootView.findViewById(R.id.userNameTextView)
         emailTv = rootView.findViewById(R.id.userEmailTextView)
-        nameInput = rootView.findViewById(R.id.editTextName)
-        lastNameInput = rootView.findViewById(R.id.editTextLastName)
-        emailInput = rootView.findViewById(R.id.editTextEmail)
-        userNameInput = rootView.findViewById(R.id.editTextUserName)
-        passwordInput = rootView.findViewById(R.id.editTextPassword)
-        editButton = rootView.findViewById(R.id.editButton)
-        deleteButton = rootView.findViewById(R.id.deleteAccountIcon)
+        firstLetterName = rootView.findViewById(R.id.first_user_name_letter)
+        arobaseId = rootView.findViewById(R.id.arobase_id)
+        // nameInput = rootView.findViewById(R.id.editTextName)
+        // lastNameInput = rootView.findViewById(R.id.editTextLastName)
+        // emailInput = rootView.findViewById(R.id.editTextEmail)
+        // userNameInput = rootView.findViewById(R.id.editTextUserName)
+        // passwordInput = rootView.findViewById(R.id.editTextPassword)
+        // editButton = rootView.findViewById(R.id.editButton)
+        // deleteButton = rootView.findViewById(R.id.deleteAccountIcon)
 
         setUserData()
-        observeDeleteAccount()
-        observeUpdateAccount()
+        // observeDeleteAccount()
+        // observeUpdateAccount()
 
-        deleteButton.setOnClickListener {
-            deleteAccount()
-        }
+        // deleteButton.setOnClickListener {
+        //  deleteAccount()
+        // }
 
-        editButton.setOnClickListener {
-            updateAccount()
-        }
+        // editButton.setOnClickListener {
+        // updateAccount()
+        // }
 
         return rootView
     }
@@ -76,36 +80,37 @@ class AccountFragment : Fragment() {
 
             userNameTv.text = response.pseudonyme
             emailTv.text = response.email
-            userNameInput.setText(response.pseudonyme)
-            nameInput.setText(response.nom)
-            lastNameInput.setText(response.prenom)
-            emailInput.setText(response.email)
-            passwordInput.setText("")
+            firstLetterName.text = response.pseudonyme.first().uppercaseChar().toString()
+            arobaseId.text = getString(R.string.arobase_id, response.nom)
+            // userNameInput.setText(response.pseudonyme)
+            // nameInput.setText(response.nom)
+            // lastNameInput.setText(response.prenom)
+            // emailInput.setText(response.email)
+            // passwordInput.setText("")
         }
     }
 
-    // click events
     private fun updateAccount() {
-        val name = nameInput.text.toString()
-        val lastName = lastNameInput.text.toString()
-        val email = emailInput.text.toString()
-        val username = userNameInput.text.toString()
+        // val name = nameInput.text.toString()
+        // val lastName = lastNameInput.text.toString()
+        // val email = emailInput.text.toString()
+        // val username = userNameInput.text.toString()
 
-        var password = currentUser?.motDePass
+        // var password = currentUser?.motDePass
 
-        if (username.trim().isEmpty() || email.trim().isEmpty()) {
-            Utils.displayToast(
-                this.requireContext(),
-                R.layout.error_toast,
-                "email et nom d'utilisateur ne peuvent pas etre null",
-                Toast.LENGTH_SHORT
-            )
-            return
-        }
+        // if (username.trim().isEmpty() || email.trim().isEmpty()) {
+        // Utils.displayToast(
+        // this.requireContext(),
+        // R.layout.error_toast,
+        //  "email et nom d'utilisateur ne peuvent pas etre null",
+        //  Toast.LENGTH_SHORT
+        // )
+        // return
+        // }
 
-        if (passwordInput.text.toString().trim().isNotEmpty()) {
-            password = passwordInput.text.toString()
-        }
+        // if (passwordInput.text.toString().trim().isNotEmpty()) {
+        //      password = passwordInput.text.toString()
+        //  }
 
         setOverlay()
         val message = "Êtes-vous sûr(e) de vouloir modifier votre compte ?"
@@ -113,16 +118,16 @@ class AccountFragment : Fragment() {
         Utils.showCustomDialogBox(message, dialog) { result ->
             if (result) {
                 clearOverlay()
-                val payload =
-                    UserData(
-                        email,
-                        name,
-                        lastName,
-                        username,
-                        userId!!,
-                        password!!
-                    )
-                accountViewModel.updateUser(payload, userId!!)
+                // val payload =
+                // UserData(
+                //  email,
+                // name,
+                // lastName,
+                // username,
+                // userId!!,
+                // password!!
+                // )
+                // accountViewModel.updateUser(payload, userId!!)
             } else {
                 clearOverlay()
             }

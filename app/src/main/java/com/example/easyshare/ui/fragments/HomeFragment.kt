@@ -15,8 +15,10 @@ import com.example.easyshare.models.Data
 import com.example.easyshare.ui.view.ProductDetailsActivity
 import com.example.easyshare.ui.view.adapters.OnProductClicked
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_COMMENTS_SIZE
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_DESCRIPTION
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.ui.viewmodel.ProductViewModel
@@ -102,6 +104,8 @@ class HomeFragment : Fragment(), OnProductClicked {
         intent.putExtra(PRODUCT_NAME, productData.titre)
         intent.putExtra(PRODUCT_CREATED_AT, CustomDateUtils.formatReadableDate(productData.createdAt))
         intent.putExtra(PRODUCT_CREATED_BY, productData.utilisateur.pseudonyme)
+        intent.putExtra(PRODUCT_DESCRIPTION, productData.description)
+        intent.putExtra(PRODUCT_COMMENTS_SIZE, productData.comments.size.toString())
         startActivity(intent)
     }
 }
