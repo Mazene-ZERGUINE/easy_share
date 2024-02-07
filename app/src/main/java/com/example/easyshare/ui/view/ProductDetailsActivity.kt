@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyshare.R
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
 import com.example.easyshare.ui.view.adapters.CommentsAdapter
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_COMMENTS_SIZE
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_DESCRIPTION
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.ui.viewmodel.CommentViewModel
@@ -30,6 +32,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     private lateinit var productCreatedAt: String
     private lateinit var productCreatedBy: String
+    private lateinit var productDescription: String
+    private lateinit var productCommentsSize: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +78,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.productDetailTitleTv.text = this.productTitle
         binding.productDetailCreatedAtTv.text = getString(R.string.created_At, this.productCreatedAt)
         binding.productCreatedByTv.text = getString(R.string.created_by, this.productCreatedBy)
+        binding.productDetailsDescription.text = this.productDescription
+        binding.commentsSizeTv.text = this.productCommentsSize
     }
 
     private fun getProductInfoFromIntent() {
@@ -81,6 +87,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         productId = intent.getStringExtra(PRODUCT_ID) ?: ""
         productCreatedAt = intent.getStringExtra(PRODUCT_CREATED_AT) ?: ""
         productCreatedBy = intent.getStringExtra(PRODUCT_CREATED_BY) ?: ""
+        productDescription = intent.getStringExtra(PRODUCT_DESCRIPTION) ?: ""
+        productCommentsSize = intent.getStringExtra(PRODUCT_COMMENTS_SIZE) ?: ""
 
         productId?.let {
             this.commentViewModel.loadComments(it.toInt())
@@ -102,7 +110,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     private fun setStarAndStarFillButtonVisibility() {
-        if (this.isPostStarred == true) {
+        if (this.isPostStarred) {
             starButton.visibility = View.GONE
             starFillButton.visibility = View.VISIBLE
         } else {

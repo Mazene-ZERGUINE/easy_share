@@ -26,7 +26,7 @@ object CustomDateUtils {
                 if (hours > 0) "$dayString et ${hours}h" else dayString
             }
             hours < 1 -> {
-                "il y'a moins d'une heure"
+                "moins d'une heure"
             }
             else -> "Il y'a ${hours}h"
         }

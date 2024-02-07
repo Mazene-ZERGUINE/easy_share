@@ -4,27 +4,31 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/error_toast_layout"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:background="#4CAF50"
+	android:layout_height="45dp"
+	android:background="@color/succes_color"
 	android:orientation="horizontal"
-	android:padding="16dp"
+	android:gravity="center_vertical"
+	android:paddingTop="5dp"
+	android:paddingStart="15dp"
+	android:paddingEnd="15dp"
+	android:paddingBottom="5dp"
 >
 
     <ImageView
 		android:id="@+id/errorImageView"
 		android:layout_width="24dp"
 		android:layout_height="24dp"
-		android:src="@mipmap/ic_check_round"
+		android:src="@drawable/ic_hi"
 		android:layout_marginRight="8dp"
-		app:tint="#FFFFFF"
+		app:tint="@color/white"
 	/>
 
     <TextView
 		android:id="@+id/messageTextView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Error!"
-		android:textColor="#FFFFFF"
+		android:text="Success !"
+		android:textColor="@color/white"
 		android:textSize="16sp"
 		android:layout_gravity="center"
 	/>
