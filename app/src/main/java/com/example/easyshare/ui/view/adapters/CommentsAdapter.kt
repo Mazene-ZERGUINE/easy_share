@@ -41,7 +41,9 @@ class CommentsAdapter(private val comments: List<Commentaire>) : RecyclerView.Ad
             this.publishedAtComment = itemView.findViewById(R.id.publisheAt_comment_tv)
             this.userAvatar = itemView.findViewById(R.id.businessImage)
 
-            Utils.loadRandomUserAvatar(itemView)
+            if (itemCount >= 1) {
+                Utils.loadRandomUserAvatar(itemView)
+            }
         }
 
         fun bind(comment: Commentaire) {

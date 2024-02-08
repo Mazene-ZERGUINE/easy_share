@@ -63,7 +63,6 @@ class FavoritePostViewModel(private val userRepository: UserRepository) : ViewMo
         this._favoritePosts
             .observeOn(Schedulers.io())
             .subscribe {
-                Log.d("👉 observeOnFavoritePosts", it.toString())
                 this.favoritePosts.postValue(it)
             }
             .addTo(disposeBag)

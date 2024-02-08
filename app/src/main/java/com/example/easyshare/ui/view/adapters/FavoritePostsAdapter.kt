@@ -67,7 +67,9 @@ class FavoritePostsAdapter(
             this.listenToItemView(itemView)
             this.listenToStarButton()
 
-            Utils.loadRandomUserAvatar(itemView)
+            if (itemCount >= 1) {
+                Utils.loadRandomUserAvatar(itemView)
+            }
         }
 
         fun bind(currentFavoritePost: PublicationFavori) {
