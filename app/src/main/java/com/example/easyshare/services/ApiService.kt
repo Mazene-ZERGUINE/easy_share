@@ -19,6 +19,7 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -27,6 +28,7 @@ interface ApiService {
     @GET("publications")
     fun getProducts(): Single<AllProductInfo>
 
+    @Multipart()
     @POST("publications")
     fun addNewProduct(
         @Body request: NewProductRequest

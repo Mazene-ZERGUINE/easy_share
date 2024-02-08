@@ -1,5 +1,6 @@
 package com.example.easyshare.ui.viewmodel
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class ProductViewModel(
     private val productRepository: ProductsRepository,
@@ -125,11 +130,22 @@ class ProductViewModel(
 
     fun addNewProduct(
         title: String,
-        description: String
+        description: String,
+        imageUri: Uri?
     ) {
-        val newProductPayload =
-            NewProductRequest(title, description, TokenManager.getUserIdFromToken())
+        val imageFile = imageUri?.let { File(it.path) }
+        val imagePart =
+            imageFile?.let {
+                val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), it)
+                MultipartBody.Part.createFormData("image", it.name, requestBody)
+            }
 
-        productRepository.addProduct(newProductPayload).subscribe()
+        val newProductPayload =
+            NewProductRequest(title, description, TokenManager.getUserIdFromToken(), imagePart)
+
+        productRepository.addProduct(newProductPayload)
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+            .addTo(disposBag)
     }
 }
