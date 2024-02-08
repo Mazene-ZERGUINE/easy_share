@@ -21,6 +21,7 @@ import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PROD
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_DESCRIPTION
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
+import com.example.easyshare.ui.view.adapters.ProductsSuggestionListAdapter
 import com.example.easyshare.ui.viewmodel.ProductViewModel
 import com.example.easyshare.utilis.CustomDateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,6 +32,8 @@ class HomeFragment : Fragment(), OnProductClicked {
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var productsListRv: RecyclerView
+
+    private lateinit var productsSuggestionListRv: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +59,7 @@ class HomeFragment : Fragment(), OnProductClicked {
         injectModuleDependencies(requireContext())
 
         this.productsListRv = binding.productsRv
+        this.productsSuggestionListRv = binding.productsSugestionRv
 
         this.observeIsLoading()
         this.observeCompleteProductData()
@@ -70,12 +74,16 @@ class HomeFragment : Fragment(), OnProductClicked {
         this.productViewModel.completeProductData.observe(viewLifecycleOwner) {
             this.setUpProductsList(it)
         }
+        this.productViewModel.userProductData.observe(viewLifecycleOwner) {
+            this.setUpProductSuggestionList(it)
+        }
     }
 
     private fun observeIsLoading() {
         this.productViewModel.isLoading.observe(viewLifecycleOwner) { isDataLoading ->
             this.binding.homePb.visibility = if (isDataLoading) View.VISIBLE else View.GONE
             this.productsListRv.visibility = if (isDataLoading) View.GONE else View.VISIBLE
+            this.productsSuggestionListRv.visibility = if (isDataLoading) View.GONE else View.VISIBLE
         }
     }
 
@@ -96,6 +104,13 @@ class HomeFragment : Fragment(), OnProductClicked {
                 },
                 this
             )
+    }
+
+    private fun setUpProductSuggestionList(productsSuggestion: List<Data>)  {
+        productsSuggestionListRv.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        productsSuggestionListRv.adapter = ProductsSuggestionListAdapter(productsSuggestion)
     }
 
     override fun displayProductDetails(productData: Data) {

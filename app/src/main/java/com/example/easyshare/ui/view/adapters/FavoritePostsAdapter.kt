@@ -1,4 +1,4 @@
-package com.example.easyshare.view.adapters
+package com.example.easyshare.ui.view.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,6 +11,9 @@ import com.example.easyshare.R
 import com.example.easyshare.models.ApiResponse
 import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.ui.view.ProductDetailsActivity
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_AT
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_CREATED_BY
+import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_DESCRIPTION
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_ID
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.utilis.CustomDateUtils
@@ -79,6 +82,9 @@ class FavoritePostsAdapter(
                     Intent(context, ProductDetailsActivity::class.java).apply {
                         putExtra(PRODUCT_ID, favoritePost.publicationId.toString())
                         putExtra(PRODUCT_NAME, favoritePost.publication.titre)
+                        putExtra(PRODUCT_CREATED_BY, TokenManager.getPseudonymeFromToken())
+                        putExtra(PRODUCT_CREATED_AT, CustomDateUtils.formatReadableDate(favoritePost.createdAt))
+                        putExtra(PRODUCT_DESCRIPTION, favoritePost.publication.description)
                     }
 
                 context.startActivity(intent)

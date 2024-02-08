@@ -26,6 +26,8 @@ class ProductViewModel(
 
     val completeProductData: MutableLiveData<List<Data>> = MutableLiveData()
 
+    val userProductData: MutableLiveData<List<Data>> = MutableLiveData()
+
     val isPostStarredData = MutableLiveData<Boolean>()
 
     init {
@@ -38,6 +40,7 @@ class ProductViewModel(
 
     fun reloadPosts() {
         this.getProducts()
+        this.getProductByUserId()
     }
 
     fun starPost(id: Int) {
@@ -131,5 +134,26 @@ class ProductViewModel(
             NewProductRequest(title, description, TokenManager.getUserIdFromToken())
 
         productRepository.addProduct(newProductPayload).subscribe()
+    }
+
+    private fun getProductByUserId() {
+        val currentUserId = TokenManager.getUserIdFromToken()
+
+        productRepository.getProducts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+            .map { response ->
+
+                response.data.filter { it.utilisateurId == currentUserId }
+            }
+            .subscribe(
+                { filteredProducts ->
+                    userProductData.postValue(filteredProducts)
+                    Log.d("getProductByUserId", filteredProducts.toString())
+                },
+                { error ->
+                    Log.e("getProductByUserId", "Error fetching user products", error)
+                }
+            ).addTo(disposBag)
     }
 }
