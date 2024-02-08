@@ -1,5 +1,6 @@
 package com.example.easyshare.view.adapters
 
+import Utils
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PROD
 import com.example.easyshare.utilis.CustomDateUtils
 import com.example.easyshare.utilis.TokenManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import de.hdodenhof.circleimageview.CircleImageView
 
 class FavoritePostsAdapter(
     private val favoritePosts: ApiResponse<PublicationFavori>,
@@ -49,6 +51,7 @@ class FavoritePostsAdapter(
         private var profileNameTv: TextView
         private var productIm: ImageView
         private var starButton: FloatingActionButton
+        private var userAvatar: CircleImageView
 
         init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
@@ -56,9 +59,12 @@ class FavoritePostsAdapter(
             profileNameTv = itemView.findViewById(R.id.profileNameTv)
             productIm = itemView.findViewById(R.id.productIm)
             starButton = itemView.findViewById(R.id.favoriteFillFab)
+            userAvatar = itemView.findViewById(R.id.businessImage)
 
             this.listenToItemView(itemView)
             this.listenToStarButton()
+
+            Utils.loadRandomUserAvatar(itemView)
         }
 
         fun bind(currentFavoritePost: PublicationFavori) {

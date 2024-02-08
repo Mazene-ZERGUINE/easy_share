@@ -1,5 +1,6 @@
 package com.example.easyshare.ui.view.adapters
 
+import Utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.example.easyshare.R
 import com.example.easyshare.models.Data
 import com.example.easyshare.utilis.CustomDateUtils
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import de.hdodenhof.circleimageview.CircleImageView
 
 class ProductsListAdapter(
     val products: List<Data>,
@@ -62,6 +64,7 @@ class ProductsListAdapter(
         private var productCommentsSize: TextView
         private var starButton: FloatingActionButton
         private var starFillButton: FloatingActionButton
+        private var userAvatar: CircleImageView
 
         init {
             productTitleTv = itemView.findViewById(R.id.productTitleTv)
@@ -71,9 +74,12 @@ class ProductsListAdapter(
             productCommentsSize = itemView.findViewById(R.id.comments_size_tv)
             starButton = itemView.findViewById(R.id.favoriteFab)
             starFillButton = itemView.findViewById(R.id.favoriteFillFab)
+            userAvatar = itemView.findViewById(R.id.businessImage)
 
             this.listenToStarButton()
             this.listenToStarFillButton()
+
+            Utils.loadRandomUserAvatar(itemView)
         }
 
         fun bind(productData: Data) {
