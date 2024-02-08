@@ -106,7 +106,7 @@ class HomeFragment : Fragment(), OnProductClicked {
             )
     }
 
-    private fun setUpProductSuggestionList(productsSuggestion: List<Data>)  {
+    private fun setUpProductSuggestionList(productsSuggestion: List<Data>) {
         productsSuggestionListRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
