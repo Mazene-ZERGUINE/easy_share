@@ -4,8 +4,9 @@
 - [Introduction](#introduction)
 - [Pre-requis](#pre-requis)
 - [Lancement](#lancement)
-- [Quelques images](#quelques-images)
+- [Capture d'écran](#capture-d-ecran
 - [Architecture](#architecture)
+- [Choix de conception](#choix-de-conception)
 - [Fonctionnalites](#fonctionnalites)
 
 ## Introduction
