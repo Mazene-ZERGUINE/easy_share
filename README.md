@@ -34,15 +34,14 @@
   - **Vue** : représente l’interface utilisateur
   - **VueModèle** : représente la logique de présentation et de liaison entre la vue et le modèle
 
-## Quelques images
-- TODO 1
-- TODO 2
+## Capture d'ecran
+![home.png](docs/home.png)
 
 ## Fonctionnalites
 - fonctionnalitées de bases envisagées :
   - publication d’objets :
-    - [ ] création
-    - [ ] lister
+    - [x] création
+    - [x] lister
     - [ ] modification
     - [ ] suppression
 - fonctionnalitées bonus :
@@ -55,4 +54,8 @@
   - [ ] Publication :
     - [ ] contacter l’auteur d’une publication par mail
     - [ ] “dis/like”
-    - [ ] CRUD de commentaires
+    - [ ] commentaires :
+      - [x] création
+      - [x] lister
+      - [ ] modification
+      - [ ] suppression
