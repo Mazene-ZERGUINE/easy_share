@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.easyshare.databinding.FragmentFavoriteBinding
 import com.example.easyshare.models.ApiResponse
 import com.example.easyshare.models.PublicationFavori
-import com.example.easyshare.view.adapters.FavoritePostsAdapter
+import com.example.easyshare.ui.view.adapters.FavoritePostsAdapter
 import com.example.easyshare.viewmodel.FavoritePostViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
