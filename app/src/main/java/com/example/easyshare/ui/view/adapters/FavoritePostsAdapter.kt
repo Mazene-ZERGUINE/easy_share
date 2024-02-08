@@ -75,7 +75,7 @@ class FavoritePostsAdapter(
         fun bind(currentFavoritePost: PublicationFavori) {
             productTitleTv.text = currentFavoritePost.publication.titre
             publishedAtTv.text = CustomDateUtils.calculateTimeDifference(currentFavoritePost.publication.createdAt)
-            profileNameTv.text = TokenManager.getPseudonymeFromToken()
+            profileNameTv.text = currentFavoritePost.publication.utilisateur.pseudonyme
         }
 
         private fun listenToItemView(itemView: View) {
