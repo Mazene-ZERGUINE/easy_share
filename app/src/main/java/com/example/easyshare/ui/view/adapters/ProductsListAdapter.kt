@@ -79,7 +79,9 @@ class ProductsListAdapter(
             this.listenToStarButton()
             this.listenToStarFillButton()
 
-            Utils.loadRandomUserAvatar(itemView)
+            if (itemCount >= 1) {
+                Utils.loadRandomUserAvatar(itemView)
+            }
         }
 
         fun bind(productData: Data) {

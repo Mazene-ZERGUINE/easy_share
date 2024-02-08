@@ -67,13 +67,15 @@ class FavoritePostsAdapter(
             this.listenToItemView(itemView)
             this.listenToStarButton()
 
-            Utils.loadRandomUserAvatar(itemView)
+            if (itemCount >= 1) {
+                Utils.loadRandomUserAvatar(itemView)
+            }
         }
 
         fun bind(currentFavoritePost: PublicationFavori) {
             productTitleTv.text = currentFavoritePost.publication.titre
             publishedAtTv.text = CustomDateUtils.calculateTimeDifference(currentFavoritePost.publication.createdAt)
-            profileNameTv.text = TokenManager.getPseudonymeFromToken()
+            profileNameTv.text = currentFavoritePost.publication.utilisateur.pseudonyme
         }
 
         private fun listenToItemView(itemView: View) {

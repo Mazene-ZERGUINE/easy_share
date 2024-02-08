@@ -15,5 +15,6 @@ data class Publication(
     @SerializedName("updated_at")
     val updatedAt: String?,
     @SerializedName("utilisateur_id")
-    val utilisateurId: Int
+    val utilisateurId: Int,
+    val utilisateur: UserData
 )
