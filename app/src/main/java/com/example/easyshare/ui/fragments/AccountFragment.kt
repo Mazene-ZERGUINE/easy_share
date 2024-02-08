@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.easyshare.R
 import com.example.easyshare.models.UserData
 import com.example.easyshare.ui.view.LoginActivity
@@ -27,6 +28,7 @@ class AccountFragment : Fragment() {
     private lateinit var emailTv: TextView
     private lateinit var firstLetterName: TextView
     private lateinit var arobaseId: TextView
+    private lateinit var backArrow: ImageView
 
     // private lateinit var nameInput: EditText
     // private lateinit var lastNameInput: EditText
@@ -48,6 +50,7 @@ class AccountFragment : Fragment() {
         emailTv = rootView.findViewById(R.id.userEmailTextView)
         firstLetterName = rootView.findViewById(R.id.first_user_name_letter)
         arobaseId = rootView.findViewById(R.id.arobase_id)
+        backArrow = rootView.findViewById(R.id.arrow_back_btn)
         // nameInput = rootView.findViewById(R.id.editTextName)
         // lastNameInput = rootView.findViewById(R.id.editTextLastName)
         // emailInput = rootView.findViewById(R.id.editTextEmail)
@@ -67,6 +70,10 @@ class AccountFragment : Fragment() {
         // editButton.setOnClickListener {
         // updateAccount()
         // }
+
+        backArrow.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return rootView
     }
