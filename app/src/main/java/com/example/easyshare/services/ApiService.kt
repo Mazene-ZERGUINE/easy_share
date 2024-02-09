@@ -5,6 +5,7 @@ import com.example.easyshare.models.ApiResponse
 import com.example.easyshare.models.CommentRequest
 import com.example.easyshare.models.CommentResponse
 import com.example.easyshare.models.GenericApiResponse
+import com.example.easyshare.models.ImageData
 import com.example.easyshare.models.IsStarredPost
 import com.example.easyshare.models.LoginRequest
 import com.example.easyshare.models.LoginResponse
@@ -16,21 +17,31 @@ import com.example.easyshare.models.UserData
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
     @GET("publications")
     fun getProducts(): Single<AllProductInfo>
 
+    @Multipart
     @POST("publications")
     fun addNewProduct(
-        @Body request: NewProductRequest
+        @Part("titre") titre: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part image: MultipartBody.Part,
+        @Part("utilisateur_id") utilisateur_id: RequestBody,
     ): Flowable<Unit>
+
+
 
     @POST("auth/log-in")
     fun userLogin(
@@ -92,4 +103,8 @@ interface ApiService {
         @Path("userId") userId: Int,
         @Body payload: UserData
     ): Flowable<Unit>
+
+    @GET("images")
+    fun getImage(
+    ): Flowable<List<ImageData>>
 }
