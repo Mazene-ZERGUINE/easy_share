@@ -290,14 +290,16 @@
     </androidx.core.widget.NestedScrollView>
 
     <ImageView
-		android:id="@+id/product_detail_im"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:scaleType="centerCrop"
-		app:layout_anchor="@+id/appbar"
-		app:layout_anchorGravity="center"
-		app:layout_collapseMode="parallax"
-	/>
+      android:id="@+id/product_detail_im"
+      android:layout_width="match_parent"
+      android:layout_height="337dp"
+      android:scaleType="centerCrop"
+      app:layout_anchor="@+id/appbar"
+      app:layout_anchorGravity="center"
+      app:layout_collapseMode="parallax"
+
+
+      />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
