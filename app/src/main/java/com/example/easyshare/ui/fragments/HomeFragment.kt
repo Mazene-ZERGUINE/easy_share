@@ -25,9 +25,10 @@ import com.example.easyshare.ui.view.adapters.ProductsSuggestionListAdapter
 import com.example.easyshare.ui.viewmodel.ProductViewModel
 import com.example.easyshare.utilis.CustomDateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class HomeFragment : Fragment(), OnProductClicked {
-    private val productViewModel: ProductViewModel by viewModel()
+    private val productViewModel: ProductViewModel by viewModel { parametersOf(requireContext()) }
 
     private lateinit var binding: FragmentHomeBinding
 

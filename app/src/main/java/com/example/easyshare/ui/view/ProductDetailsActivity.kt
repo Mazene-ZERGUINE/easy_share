@@ -1,10 +1,13 @@
 package com.example.easyshare.ui.view
 
+import android.media.session.MediaSession.Token
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.easyshare.R
 import com.example.easyshare.databinding.ActivityProductDetailsBinding
 import com.example.easyshare.ui.view.adapters.CommentsAdapter
@@ -16,11 +19,16 @@ import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PROD
 import com.example.easyshare.ui.view.adapters.ProductsListAdapter.Companion.PRODUCT_NAME
 import com.example.easyshare.ui.viewmodel.CommentViewModel
 import com.example.easyshare.ui.viewmodel.ProductViewModel
+import com.example.easyshare.utilis.TokenManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class ProductDetailsActivity : AppCompatActivity() {
-    private val productViewModel: ProductViewModel by viewModel()
+    private val productViewModel: ProductViewModel by viewModel { parametersOf(this) }
+
     private val commentViewModel: CommentViewModel by viewModel()
     private lateinit var binding: ActivityProductDetailsBinding
 
@@ -35,6 +43,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var productDescription: String
     private lateinit var productCommentsSize: String
 
+    private val imageBaseUrl: String = "http://10.0.2.2:3000"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,6 +66,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         this.setStarAndStarFillButtonVisibility()
         this.listenToStarButton()
         this.listenToStarFillButton()
+
+        this.getArticleImage();
     }
 
     override fun onResume() {
@@ -163,6 +174,29 @@ class ProductDetailsActivity : AppCompatActivity() {
         this.commentViewModel.isLoading.observe(this) { isCommentsLoading ->
             binding.commentProgressBar.visibility = if (isCommentsLoading) View.VISIBLE else View.GONE
             binding.commentsRv.visibility = if (isCommentsLoading) View.GONE else View.VISIBLE
+        }
+    }
+
+    private fun getArticleImage() {
+        this.productViewModel.getProductImage(productId.toInt())
+
+        this.productViewModel.imageData.observe(this) { response ->
+            val filteredList = response.filter { imageData ->
+                imageData.publication_id == productId.toInt()
+            }
+
+            val imageData = filteredList[0]
+
+            Picasso.get()
+                .load("${imageBaseUrl}/${imageData.lien}")
+                .into(binding.productDetailIm, object : Callback {
+                    override fun onSuccess() {
+                    }
+                    override fun onError(e: Exception?) {
+                        // Error loading image
+                        Log.e("Picasso", "Error loading image: ${e?.message}")
+                    }
+                })
         }
     }
 }
