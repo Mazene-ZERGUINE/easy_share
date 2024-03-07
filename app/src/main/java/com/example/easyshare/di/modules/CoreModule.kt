@@ -1,6 +1,7 @@
 package com.example.easyshare.di.modules
 
 import LoginViewModel
+import android.content.Context
 import com.example.easyshare.repositories.AuthRepository
 import com.example.easyshare.repositories.ProductsRepository
 import com.example.easyshare.repositories.UserRepository
@@ -14,7 +15,9 @@ import org.koin.dsl.module
 
 internal val coreModule =
     module {
-        single { ProductViewModel(get(), get()) }
+        viewModel { (context: Context) ->
+            ProductViewModel(get(), get(), context)
+        }
 
         single { ProductsRepository(get()) }
 
