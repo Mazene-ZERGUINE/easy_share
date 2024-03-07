@@ -34,13 +34,7 @@
 				app:layout_collapseMode="parallax"
 			/>
 
-            <androidx.appcompat.widget.Toolbar
-				android:id="@+id/toolbar"
-				android:layout_width="match_parent"
-				android:layout_height="?actionBarSize"
-				app:layout_collapseMode="pin"
-				app:titleTextColor="@color/white"
-			/>
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
