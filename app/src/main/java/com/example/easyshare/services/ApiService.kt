@@ -9,7 +9,6 @@ import com.example.easyshare.models.ImageData
 import com.example.easyshare.models.IsStarredPost
 import com.example.easyshare.models.LoginRequest
 import com.example.easyshare.models.LoginResponse
-import com.example.easyshare.models.NewProductRequest
 import com.example.easyshare.models.PublicationFavori
 import com.example.easyshare.models.SignupRequest
 import com.example.easyshare.models.SignupResponse
@@ -38,10 +37,8 @@ interface ApiService {
         @Part("titre") titre: RequestBody,
         @Part("description") description: RequestBody,
         @Part image: MultipartBody.Part,
-        @Part("utilisateur_id") utilisateur_id: RequestBody,
+        @Part("utilisateur_id") utilisateur_id: RequestBody
     ): Flowable<Unit>
-
-
 
     @POST("auth/log-in")
     fun userLogin(
@@ -105,6 +102,5 @@ interface ApiService {
     ): Flowable<Unit>
 
     @GET("images")
-    fun getImage(
-    ): Flowable<List<ImageData>>
+    fun getImage(): Flowable<List<ImageData>>
 }

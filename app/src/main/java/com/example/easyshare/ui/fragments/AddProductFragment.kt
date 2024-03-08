@@ -21,10 +21,11 @@ class AddProductFragment : Fragment() {
     private lateinit var binding: FragmentAddProductBinding
     private lateinit var imageUri: Uri
 
-    private val imagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        imageUri = it!!
-        binding.selectedImage.setImageURI(it)
-    }
+    private val imagePicker =
+        registerForActivityResult(ActivityResultContracts.GetContent()) {
+            imageUri = it!!
+            binding.selectedImage.setImageURI(it)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,6 @@ class AddProductFragment : Fragment() {
         binding.addImgProductBtn.setOnClickListener {
             imagePicker.launch("image/*")
         }
-
 
         this.binding.addProductBtn.setOnClickListener {
             this.addNewProduct()
@@ -61,5 +61,4 @@ class AddProductFragment : Fragment() {
             Utils.displayToast(requireContext(), R.layout.error_toast, "Merci de remplire tous les champs!", Toast.LENGTH_SHORT)
         }
     }
-
 }

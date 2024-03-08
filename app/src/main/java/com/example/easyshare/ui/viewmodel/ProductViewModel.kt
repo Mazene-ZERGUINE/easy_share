@@ -1,21 +1,15 @@
 package com.example.easyshare.ui.viewmodel
 
-import Utils
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.easyshare.R
 import com.example.easyshare.models.Data
 import com.example.easyshare.models.ImageData
-import com.example.easyshare.models.NewProductRequest
 import com.example.easyshare.repositories.ProductsRepository
 import com.example.easyshare.repositories.UserRepository
-import com.example.easyshare.ui.view.MainActivity
 import com.example.easyshare.utilis.TokenManager
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -24,11 +18,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.time.Duration
 
 class ProductViewModel(
     private val productRepository: ProductsRepository,
@@ -39,7 +31,6 @@ class ProductViewModel(
     private val starPosts = mutableMapOf<String, Boolean>()
     private val productData: BehaviorSubject<List<Data>> = BehaviorSubject.createDefault(listOf())
 
-
     val isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
 
     val completeProductData: MutableLiveData<List<Data>> = MutableLiveData()
@@ -49,7 +40,6 @@ class ProductViewModel(
     val isPostStarredData = MutableLiveData<Boolean>()
 
     val imageData: MutableLiveData<List<ImageData>> = MutableLiveData()
-
 
     init {
         getCompleteProductData()
@@ -166,11 +156,10 @@ class ProductViewModel(
         val descriptionRequestBody = description.toRequestBody(MultipartBody.FORM)
         val userIdRequestBody = TokenManager.getUserIdFromToken().toString().toRequestBody(MultipartBody.FORM)
 
-        productRepository.addNewProduct(titleRequestBody, descriptionRequestBody, imagePart , userIdRequestBody)
+        productRepository.addNewProduct(titleRequestBody, descriptionRequestBody, imagePart, userIdRequestBody)
             .subscribe()
             .addTo(disposBag)
     }
-
 
     fun getProductImage(imageId: Int) {
         productRepository.getProductImage(imageId)
@@ -181,7 +170,7 @@ class ProductViewModel(
                     this.imageData.postValue(imageData)
                 },
                 { error ->
-                    Log.d("fuck this shit ----------------------- "," ------------------------------ Error fetching product image: $error")
+                    Log.d("fuck this shit ----------------------- ", " ------------------------------ Error fetching product image: $error")
                 }
             )
             .addTo(disposBag)
