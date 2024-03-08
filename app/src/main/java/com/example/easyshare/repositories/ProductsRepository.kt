@@ -25,7 +25,7 @@ class ProductsRepository(private val productDataService: ApiService) {
         imagePart: MultipartBody.Part?,
         userIdRequestBody: RequestBody
     ): Flowable<Unit> {
-           return this.productDataService.addNewProduct(titleRequestBody, descriptionRequestBody, imagePart!!, userIdRequestBody)
+        return this.productDataService.addNewProduct(titleRequestBody, descriptionRequestBody, imagePart!!, userIdRequestBody)
     }
 
     fun addComment(
@@ -36,6 +36,6 @@ class ProductsRepository(private val productDataService: ApiService) {
     }
 
     fun getProductImage(imageId: Int): Flowable<List<ImageData>> {
-        return  productDataService.getImage()
+        return productDataService.getImage()
     }
 }
